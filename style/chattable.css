@@ -1,0 +1,206 @@
+@keyframes hovering {
+ from {
+   margin-bottom: 3px;
+ }
+ to {
+   margin-bottom: 0;
+ }
+}
+.msgWrapper {
+    margin: 5px;
+}
+.allMessages {
+ display: flex;
+ gap: 2.5vh;
+ background: rgba(255, 255, 255, 0.2);
+ border: 1px solid rgba(0, 0, 0, 0.5);
+ font-size: 8pt;
+ font-weight: lighter;
+ border-radius: 8px;
+ margin: 0;
+ line-height: 9pt;
+ position: relative;
+ color: rgba(0, 0, 0, 0.5);
+ width: 100%;
+ padding: 8px;
+ box-sizing: border-box;
+ backdrop-filter: blur(3px);
+ overflow: auto;
+}
+.msgWrapper:nth-child(6n) {
+    margin-top: 20px;
+}
+.msgWrapper:nth-child(6n) > .allMessages:before {
+    content: attr(time);
+    position: absolute;
+    bottom: calc(100% + 3px);
+    width: 100%;
+    text-align: center;
+}
+br {
+ height: 6pt;
+}
+.senderInfo {
+ display: block;
+ margin: 2px;
+ font-family: Verdana;
+ font-style: italic;
+ font-weight: bold;
+ text-align: justify;
+ min-width: 50px;
+ max-width: 30%;
+ word-break: break-all;
+}
+/* .sent > .senderInfo {
+   text-align: right;
+}
+ .recieved > .senderInfo {
+   text-align: left;
+}
+ */
+#background {
+ background: none transparent !important;
+}
+.msgBody {
+ text-align: left;
+}
+#input, #nameEntry {
+ background-color: rgba(0, 0, 0, 0.2);
+ color: rgba(255, 255, 255, 1);
+ border: none;
+ font-family: Verdana;
+ font-size: 8pt;
+ padding: 5px;
+ width: calc(100% - 10px);
+ border-radius: 0;
+ margin: 0;
+ border-top: solid 1px rgba(0, 0, 0, 0.5);
+}
+#input:focus, #nameEntry:focus {
+ outline: dotted 1px #AAA;
+}
+#input:empty::before {
+ content: "Leave a message...";
+ color: #AAA;
+}
+a {
+ font-family: inherit;
+}
+#timestamp {
+ color: rgba(255, 255, 255, 1);
+ text-align: center;
+ font-size: 8pt;
+ margin: 0;
+}
+#timestamp:after {
+    content: "\2934";
+    font-size: 12pt;
+    font-weight: bold;
+}
+.badge {
+  display: none;
+}
+.senderInfo:has(.owner) {
+ font-family: Verdana;
+ font-weight: bold;
+ color: #F00;
+ text-shadow: 0 0 3px #F00;
+}
+.senderInfo:has(.mod) {
+  font-family: Verdana;
+  font-weight: bold;
+  color: #F00;
+ text-shadow: 0 0 3px #F00;
+}
+#top_banner {
+ display: none;
+}
+#settings {
+ filter: invert(50%);
+ opacity: 0.75;
+}
+#settings:hover {
+ filter: invert(10%);
+}
+blockquote {
+ font-style: italic;
+}
+#loadMore {
+ font-size: 10pt;
+ font-family: Verdana;
+}
+.pinned {
+ position: sticky;
+ top: 0;
+ z-index: 2;
+ max-height: 15vh;
+ overflow: hidden;
+ cursor: default;
+}
+.pinned .allMessages {
+  background: #FFF;
+}
+.pinned::before {
+ content: "\23F7";
+ text-align: center;
+ display: flex;
+ align-items: flex-end;
+ justify-content: center;
+ position: absolute;
+ left: 0;
+ bottom: 0;
+ z-index: 2;
+ width: 100%;
+ height: 15vh;
+ max-height: 15vh;
+ animation: 500ms linear infinite alternate hovering;
+}
+.pinned:hover::before {
+ display: none;
+}
+.pinned > .allMessages {
+ box-shadow: 0 0 3px #000;
+}
+.pinned > .allMessages:hover {
+ box-shadow: none;
+}
+.pinned > .allMessages::before {
+ content: " ";
+ display: block;
+ position: absolute;
+ left: 0;
+ top: 0;
+ width: 100%;
+ height: 15vh;
+ max-height: 100%;
+ background: linear-gradient(transparent, transparent, #000);
+ opacity: 0.75 
+}
+.pinned > .allMessages:hover::before {
+ display: none;
+}
+.pinned:after {
+ display: inline-block;
+ position: absolute;
+ right: 2px;
+ top: 2px;
+ content: "📌";
+}
+#replyBanner {
+  font-size: 8pt;
+  font-family: Verdana, sans-serif;
+}
+#is_typing {
+  opacity: 0;
+}
+#is_typing > span {
+  background-color: #333;
+}
+pre:has(>code){
+  margin: 5px;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+#emojiTray {
+  background: rgba(0, 0, 0, 0.75);
+  color: #FFF;
+}

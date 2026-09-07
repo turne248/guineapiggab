@@ -1,0 +1,1448 @@
+/* CSS is how you can add style to your website, such as colors, fonts, and positioning of your
+   HTML content. To learn how to do something, just try searching Google for questions like
+   "how to change link color." */
+
+/* -------------------------------------------------------- */
+/* VARIABLES */
+/* -------------------------------------------------------- */
+
+/* Variables are used like this: var(--text-color) */
+
+:root {
+  /* Background Colors: */
+  --background-color: rgba(0,0,0, .2);
+  --content-background-color: rgba(255, 255, 255, 0.7);
+  --sidebar-background-color: rgba(255, 255, 255, 0.7);
+  --titlebar-gradient: linear-gradient(90deg, #6a1535, #b23965, #f9a5b9);
+  --dialog-blue: #6a1535;
+  --dialog-accent: white; /* color of text on diaglog blue */
+  --titlebar-color: white; /* reccomended to change so its easy to read on titlebar color */
+  --player-image: url(../images/piggy-jam.gif);
+  --surface: #c0c0c0;
+  --button-highlight: #ffffff;
+  --button-face: #dfdfdf;
+  --button-shadow: #808080;
+  --light-button-shadow: #a9a9a9;
+  --window-frame: #0a0a0a;
+  --border-field: inset -1px -1px var(--button-highlight),
+            inset 1px 1px var(--button-shadow), inset -2px -2px var(--button-face),
+            inset 2px 2px var(--window-frame);
+
+  /* Text Colors: */
+  --text-color: #000000;
+  --sidebar-text-color: #000000;
+  --link-color: #3026e8;
+  --link-color-hover: #7780ec;
+
+  /* Text: */
+  --font: "Courier New", monospace;
+  --heading-font: "argent-pixel-cf", sans-serif;
+  --font-size: 11pt;
+  --font-weight: bold;
+  --letter-spacing: 2px;
+
+
+  /* Other Settings: */
+  --margin: 10px;
+  --padding: 20px;
+  --border: 1px solid #b2b2b2;
+  --round-borders: 8px;
+  --sidebar-width: 280px;
+}
+
+.space-mono-regular {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.space-mono-bold {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.space-mono-regular-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.space-mono-bold-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: italic;
+}
+
+
+.lora-heading {
+  font-family: "Lora", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: italic;
+}
+
+/* -------------------------------------------------------- */
+/* BASICS */
+/* -------------------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+  font-size: var(--font-size);
+  margin: 0;
+  padding: var(--margin);
+  color: var(--text-color);
+  font-family: var(--font);
+  line-height: 1.2;
+  background-image: url("");
+  background-image: url('../images/print-bg.png');
+  background-repeat: repeat;
+  background-size: 66%;
+}
+
+::selection {
+  /* (Text highlighted by the user) */
+  background: rgba(0, 0, 0, 0.2);
+}
+
+mark {
+  /* Text highlighted by using the <mark> element */
+  text-shadow: 1px 1px 4px var(--link-color);
+  background-color: inherit;
+  color: var(--text-color);
+}
+
+/* Links: */
+a {
+  text-decoration: underline;
+}
+
+a,
+a:visited {
+  color: var(--link-color);
+}
+
+a:hover,
+a:focus {
+  color: var(--link-color-hover);
+  text-decoration: none;
+}
+
+/* -------------------------------------------------------- */
+/* LAYOUT */
+/* -------------------------------------------------------- */
+
+.layout {
+  width: 1300px;
+  display: grid;
+  grid-gap: var(--margin);
+  grid-template: "logo-container logo-container logo-container" auto "header header header" auto "leftSidebar main rightSidebar" auto "footer footer footer" auto / var(--sidebar-width) auto var(--sidebar-width);
+  
+  /*
+  /* Confused by the grid? Check out my tutorial: https://petrapixel.neocities.org/coding/positioning-tutorial#grid */
+}
+
+main {
+  grid-area: main;
+  overflow-y: auto;
+  padding: var(--padding);
+  background: var(--content-background-color);
+  border: var(--border);
+  border-radius: var(--round-borders);
+}
+
+/* -------------------------------------------------------- */
+/* HEADER */
+/* -------------------------------------------------------- */
+.logo-container {
+    grid-area: logo-container;
+}
+
+.logo {
+    height: 200px;
+    margin: auto;
+    display: block;
+    filter: drop-shadow(-5px 5px 0px #594637);
+}
+#title {
+  text-align: center;
+}
+.logo-holder {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+header {
+  grid-area: header;
+  font-size: 1.2em;
+  border: var(--border);
+  border-radius: var(--round-borders);
+  background: var(--content-background-color);
+}
+
+/*.header-content {
+  padding: var(--padding);
+}*/
+
+.header-title {
+  font-family: var(--heading-font);
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.header-image img {
+  width: 100%;
+  height: auto;
+}
+
+/* -------------------------------------------------------- */
+/* SIDEBARS */
+/* -------------------------------------------------------- */
+
+aside {
+  grid-area: aside;
+/*  border: var(--border);
+  border-radius: var(--round-borders); */
+  overflow: hidden;
+/*  background: var(--sidebar-background-color);*/
+  margin: 0px 5px;
+  color: var(--sidebar-text-color);
+  padding-top: 11px;
+  padding-left: 10px;
+}
+
+.section-heading {
+  height: 30px;
+  width: auto;
+}
+
+.left-sidebar {
+  grid-area: leftSidebar;
+}
+
+.right-sidebar {
+  grid-area: rightSidebar;
+}
+
+.sidebar-title {
+  font-weight: bold;
+  font-size: 1.2em;
+  font-family: var(--heading-font);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 !important;
+  position: absolute;
+  top: -42px;
+}
+.sidebar-title button {
+  display: none;
+}
+.mobile-collapse {
+  display: none;
+}
+.sidebar-holder {
+  display: inherit;
+}
+
+.sidebar-section {
+  border: var(--border);
+  border-radius: var(--round-borders);
+  background: var(--sidebar-background-color);
+  padding: var(--padding);
+  position: relative;
+  box-shadow: -7px 7px 0px #372f28;
+  border-style: solid;
+  border-color: #372f28;
+  border-width: 42px 2px 2px 2px;
+  outline: 2px solid #fff;
+  outline-offset: -2px;
+  background-image: url(../images/checkerboard-texture.jpg);
+  margin-bottom: 3em;
+}
+.sidebar-section:first-child{
+  padding: 0;
+}
+
+.sidebar-section ul,
+.sidebar-section ol {
+  padding-left: 1.5em;
+}
+
+.sidebar-section > *:not(p):not(ul):not(ol):not(blockquote) {
+  margin-top: 10px;
+}
+
+/* Sidebar Blockquote: */
+
+.sidebar-section blockquote {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin: 1em 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.sidebar-section blockquote > *:first-child {
+  margin-top: 0;
+}
+
+.sidebar-section blockquote > *:last-child {
+  margin-bottom: 0;
+}
+
+.recent-list {
+  margin: 0;
+}
+/* Site Button: */
+
+.site-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.site-button textarea {
+  font-family: monospace;
+  font-size: 0.7em;
+}
+
+/* Sidebar Content */
+#statuscafe-username, #status-face {
+  display: none !important;
+}
+.counter-display {
+  display: block;
+  border: none;
+  border-radius: 0;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+  box-sizing: border-box;
+  color: black;
+  min-height: 23px;
+  min-width: 75px;
+  font-weight: bold;
+  padding: 10px 12px 10px 12px;
+  text-shadow: 0 0 #222;
+  background: #dbbb9f;
+  text-align: center;
+}
+.count-number {
+  font-family: var(--heading-font);
+  font-size: 18pt;
+  font-style: italic;
+  letter-spacing: 12px;
+}
+.bean-holder {
+  width: 30%; 
+  margin: 0; 
+  background: #f4ead3;
+}
+#increment-btn {
+  display: block;
+  padding: 5px 0px;
+  font-weight: bold;
+  font-family: var(--font);
+  color: #372f28 !important;
+  background-color: #F7EFAD;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: inset 0px 12px 10px -5px #FBF6D0, inset 0px -10px 10px -10px #EBD947;
+  transition: all 0.1s ease;
+  width: 100%;
+  cursor: pointer;
+}
+#increment-btn:hover {
+background-color: #e7dd89;
+  box-shadow: inset 0px 12px 10px -5px #F6EDA2, inset 0px -10px 10px -10px #E4CE1B;
+  color: #fff5f5;
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+.mixtape-container, .support-container {
+  display: flex;
+}
+.support-container {
+  background: #9055a2;
+  border: none;
+  border-radius: 0;
+  box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+  box-sizing: border-box;
+  color: transparent;
+  min-height: 23px;
+  min-width: 75px;
+  padding: 0 20px;
+  text-shadow: 0 0 #222;
+}
+.support-container h3 {
+  font-family: "argent-pixel-cf", sans-serif;
+}
+.support-description p {
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: center;
+}
+.support-description a {
+  text-decoration: none;
+  text-align: center;
+  color: green;
+}
+.mixtape {
+  list-style-type: none;
+  margin-top: 0;
+}
+.mixtape li {
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.mixtape a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+}
+.mixtape a:hover {
+  color: #000;
+} 
+.meena-holder img {
+  transition: scale .3s ease-in-out;
+  animation: tilt-loop 3s steps(6, end) infinite;
+  will-change: scale, rotate;
+}
+.meena-holder img:hover {
+  scale: 1.06;
+}
+/* Define the 10-degree looping animation */
+@keyframes tilt-loop {
+  0%, 100% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: 5deg; /* Tilts right */
+  }
+  75% {
+    rotate: -5deg; /* Tilts left */
+  }
+}
+.list-holder-mobile {
+  display: none;
+}
+#potd-widget {
+  margin: 0 !important;
+}
+.daily-photo-card {
+  width: 100%;
+  max-width: 250px;
+}
+
+.photo-frame {
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.daily-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  margin: 0;
+}
+/* Center the widget on the page */
+    .pet-widget-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+    }
+
+    /* Widget container */
+    .pet-widget, .pet-widget-mobile {
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+    }
+
+    /* Pet image styling */
+    .pet-sprite {
+      width: 150px;
+      height: auto;
+      object-fit: contain; /* Prevents image distortion */
+      cursor: pointer;
+      user-select: none;
+      image-rendering: pixelated;
+      transition: transform 0.2s;
+    }
+    .pet-sprite:hover, .pet-sprite:active {
+      cursor: grab;
+    }
+
+    /* Idle breathing animation 
+    .idle {
+      animation: breathe 2s infinite linear;
+    }*/ 
+
+   /* The jumping animation sequence */
+    @keyframes jump {
+      0%   { transform: translateY(0); }
+      30%  { transform: translateY(-2px); }
+      50%  { transform: translateY(0); }
+      70%  { transform: translateY(-1px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Class toggled by JavaScript */
+    .jumping {
+      animation: jump 0.6s ease infinite; /* Loops during the interaction */
+    }
+
+    /* Status text */
+    .status-text {
+    display: block;
+    border: none;
+    border-radius: 0;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+    box-sizing: border-box;
+    color: black;
+    min-height: 23px;
+    min-width: 75px;
+    font-weight: bold;
+    padding: 5px 12px 5px 12px;
+    text-shadow: 0 0 #222;
+    background: #d6b69b;
+    text-align: center;
+    }
+    .status-text:active {
+    box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey;
+    text-shadow: 1px 1px #222;
+    }
+  .nose-container {
+    /*width: 250px;*/
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+  }
+  @media only screen and (max-width: 800px) {
+   .nose-container {
+    height: 450px;
+  }
+  }
+/* The Texture Overlay */
+.nose-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  
+  /* Path to your transparent texture image (e.g., paper, dust, noise) */
+  background-image: url('');
+  background-repeat: repeat;
+  
+  /* Controls texture opacity */
+  opacity: 0.3; 
+  
+  /* Blends the texture into the image pixels */
+  mix-blend-mode: multiply; 
+  
+  /* Ensures users can still right-click or drag the image underneath */
+  pointer-events: none; 
+}
+
+  #mystery-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Fits image into viewport */
+  transition: all 0.5s ease; /* Smooth transition when unzooming */
+}
+.mystery-img {
+  box-shadow: var(--border-field);
+  padding: 2px;
+}
+.hidden-name {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #000;
+  text-align: center;
+}
+.reveal-btn {
+  display: block;
+  margin: 0 auto;
+  padding: 5px 15px;
+  font-weight: bold;
+  color: #196b52 !important;
+  background-color: #9ff2c4;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: inset 0px 12px 10px -5px #c8e8d1, inset 0px -10px 10px -10px #197352;
+  transition: all 0.1s ease;
+  font-family: var(--font);
+}
+.revealed-name {
+  color: #000;
+  text-align: center;
+}
+
+#chattable {
+  width: 100%;
+  padding: 2px;
+  height: 300px;
+}
+
+.blog-img-container {
+  width: 90%;
+  margin: auto;
+}
+
+@font-face {
+  font-family: "Pixelated MS Sans Serif";
+  src: url("https://files.catbox.moe/qgjjre.woff") format("woff");
+  src: url("https://files.catbox.moe/8fwbkl.woff2") format("woff2");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Pixelated MS Sans Serif";
+    src: url("https://files.catbox.moe/z7csle.woff") format("woff");
+    src: url("https://files.catbox.moe/moqhx6.woff2") format("woff2");
+    font-weight: bold;
+    font-style: normal;
+    }
+
+#musicplayer {
+  font-family: "Pixelated MS Sans Serif", Arial;
+  -webkit-font-smoothing: none;
+  font-size: 11px;
+  color:var(--window-frame);
+  width: fit-content;
+  border:var(--window-frame) solid 1px;
+  margin:0 auto;
+    box-shadow: inset -1px -1px var(--window-frame), inset 1px 1px var(--button-face), inset -2px -2px var(--button-shadow), inset 2px 2px var(--button-highlight);
+  background: var(--surface);
+  padding: 3px;
+  width: 260px;
+    }
+
+    .title-color {  
+  padding: 3px 2px 3px 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+    background: url(../images/checkerboard-texture.jpg);
+    margin-bottom: 2px;
+    font-weight: bold;
+}
+
+.actual-title {
+  color: #000;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.seeking {
+    font-weight: normal;
+    font-size: 11px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+    gap: 5px;
+    margin: 12px 0;
+}
+
+.player-flex {
+    display: flex;
+    gap: 3px;
+}
+
+.player-main {
+    width: calc(100% - 100px);
+    margin-top: 1px;
+}
+
+.player-icon-holder {
+  border: 2px solid var(--surface);
+  width:95px;
+  height:95px;
+  padding: 1px;
+  background-image:linear-gradient(-45deg, var(--button-face) 50%, var(--window-frame) 50%);
+  background-size:cover;
+  background-repeat:no-repeat;
+  border-width:1px;
+  border-style:solid;
+  border-color: var(--button-shadow) var(--button-highlight) var(--button-highlight) var(--button-shadow);
+  
+  overflow: hidden;
+  position:relative;
+  z-index: 2;
+}
+
+.player-icon {
+    background-image:var(--player-image);
+    background-size: contain;
+    background-repeat: no-repeat;
+  width:95px;
+  height:95px;
+  display: display;
+}
+
+/* BELOW IS LARGELY RIPPED FROM 98 CSS */
+.track-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: none;
+  border-radius:0;
+  box-sizing: border-box;
+  outline:0;
+  
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+
+  position: relative;
+  padding: 3px 4px;
+  padding-right: 32px;
+  background-image: url("https://loveberry.nekoweb.org/assets/musicplayer/button-down.svg");
+  background-position: top 2px right 2px;
+  background-repeat: no-repeat;
+  width:100%;
+
+  box-shadow: var(--border-field);
+  background-color: var(--button-highlight);
+  height: 21px;
+
+  font-family: "Pixelated MS Sans Serif", Arial;
+  -webkit-font-smoothing: none;
+  font-size: 11px;
+  font-weight: lighter;
+}
+
+.track-select:focus {
+  color: var(--dialog-accent);
+  background-color: var(--dialog-blue);
+
+}
+.track-select:focus option {
+  color: var(--window-frame);
+  background-color: var(--button-highlight);  
+  outline: 1px;
+  border: none;
+}
+
+.track-select:active {
+  background-image: url("https://loveberry.nekoweb.org/assets/musicplayer/button-down-active.svg");
+}
+
+/* input */
+#musicplayer input[type="range"] {  
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+#musicplayer input[type="range"]:focus {
+  outline: none;
+}
+
+#musicplayer input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  height: 21px;
+  width: 11px;
+  background: url("https://loveberry.nekoweb.org/assets/musicplayer/indicator-horizontal.svg");
+  transform: translateY(-8px);
+  box-shadow: none;
+  border: none;
+}
+
+#musicplayer input[type="range"].has-box-indicator::-webkit-slider-thumb {
+  background: url("https://loveberry.nekoweb.org/assets/musicplayer/indicator-rectangle-horizontal.svg");
+  transform: translateY(-10px);
+}
+
+#musicplayer input[type="range"]::-moz-range-thumb {
+  height: 21px;
+  width: 11px;
+  border: 0;
+  border-radius: 0;
+  background: url("https://loveberry.nekoweb.org/assets/musicplayer/indicator-horizontal.svg");
+  transform: translateY(2px);
+}
+
+#musicplayer input[type="range"].has-box-indicator::-moz-range-thumb {
+  background: url("https://loveberry.nekoweb.org/assets/musicplayer/indicator-rectangle-horizontal.svg");
+  transform: translateY(0px);
+}
+
+#musicplayer input[type="range"]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 2px;
+  box-sizing: border-box;
+  background: var(--window-frame);
+  border-right: 1px solid var(--button-shadow);
+  border-bottom: 1px solid var(--button-shadow);
+  box-shadow: 1px 0 0 var(--button-highlight), 1px 1px 0 var(--button-highlight), 0 1px 0 var(--button-highlight), -1px 0 0 var(--light-button-shadow),
+    -1px -1px 0 var(--light-button-shadow), 0 -1px 0 var(--light-button-shadow), -1px 1px 0 var(--button-highlight), 1px -1px var(--light-button-shadow);
+}
+
+#musicplayer input[type="range"]::-moz-range-track {
+    width: 100%;
+    height: 2px;
+    box-sizing: border-box;
+    background: var(--window-frame);
+    border-right: 1px solid var(--button-shadow);
+    border-bottom: 1px solid var(--button-shadow);
+    box-shadow: 1px 0 0 var(--button-highlight), 1px 1px 0 var(--button-highlight), 0 1px 0 var(--button-highlight), -1px 0 0 var(--light-button-shadow),
+    -1px -1px 0 var(--light-button-shadow), 0 -1px 0 var(--light-button-shadow), -1px 1px 0 var(--button-highlight), 1px -1px var(--light-button-shadow);
+}
+
+.window-button {
+    background: var(--surface);
+    border: none;
+    border-radius: 0;
+    box-shadow: inset -1px -1px var(--window-frame),inset 1px 1px var(--button-highlight),inset -2px -2px var(--button-shadow),inset 2px 2px var(--button-face);
+    box-sizing: border-box;
+    color: inherit;
+    text-shadow: 0 0 var(--window-frame);
+}
+
+.window-button:active {
+  box-shadow: inset -1px -1px var(--button-highlight), inset 1px 1px var(--window-frame), inset -2px -2px var(--button-face), inset 2px 2px var(--button-shadow);
+  text-shadow: 1px 1px var(--window-frame);
+}
+
+.window-button:focus  {
+  outline: 1px dotted #000;
+  outline-offset: -4px;
+}
+.player-buttons {
+    display: flex;
+    gap: 10px;
+    margin: 5px 5px 0 5px;
+}
+.player-buttons .window-button  {
+    width: 33%;
+    font-size: 10px;
+    padding: 5px 10px;
+}
+.player-buttons .window-button svg {
+   width: 15px;
+   height: 15px;
+}
+
+.title-bar-controls {
+    display: flex;
+}
+.close {
+    margin-left: 2px;
+    background-image: url("https://loveberry.nekoweb.org/assets/musicplayer/close.svg");
+    background-repeat: no-repeat;
+    background-position: top 3px left 4px;
+
+    padding: 0;
+    display: block;
+    min-width: 16px;
+    min-height: 14px;
+}
+
+.minimize {
+  background-image: url("https://loveberry.nekoweb.org/assets/musicplayer/minimize.svg");
+  background-repeat: no-repeat;
+  background-position: bottom 3px left 4px;
+    padding: 0;
+    display: block;
+    min-width: 16px;
+    min-height: 14px;
+}
+
+.maximize {
+  background-image: url("https://loveberry.nekoweb.org/assets/musicplayer/maximize.svg");
+  background-repeat: no-repeat;
+  background-position: top 2px left 3px;
+    padding: 0;
+    display: block;
+    min-width: 16px;
+    min-height: 14px;
+}
+
+/* -------------------------------------------------------- */
+/* FOOTER */
+/* -------------------------------------------------------- */
+
+footer {
+  grid-area: footer;
+  border: var(--border);
+  border-radius: var(--round-borders);
+  overflow: hidden;
+  font-size: 0.75em;
+  padding: 15px;
+  background: var(--content-background-color);
+  display: flex;
+  justify-content: center;
+}
+
+footer a,
+footer a:visited {
+  color: var(--link-color);
+}
+
+footer a:hover,
+footer a:focus {
+  color: var(--link-color-hover);
+}
+
+/* -------------------------------------------------------- */
+/* NAVIGATION */
+/* -------------------------------------------------------- */
+
+nav {
+  margin-bottom: 3em;
+}
+
+nav .sidebar-title {
+  margin-bottom: 0.5em;
+}
+
+nav ul {
+  margin: 0 -5px;
+  padding: 0;
+  list-style: none;
+  user-select: none;
+}
+
+nav ul li {
+  margin-bottom: 0;
+}
+
+nav > ul li > a,
+nav > ul li > strong {
+  display: inline-block;
+}
+
+nav > ul li > a,
+nav > ul li > details summary,
+nav > ul li > strong {
+  padding: 5px 10px;
+}
+
+nav > ul li > a.active,
+nav > ul li > details.active summary {
+  font-weight: bold;
+}
+
+nav ul summary {
+  cursor: pointer;
+}
+
+nav ul ul li > a {
+  padding-left: 30px;
+}
+
+/* NAVIGATION IN HEADER */
+
+header nav {
+  margin-bottom: 0;
+}
+
+header nav ul {
+  display: inline;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+header nav ul li {
+  position: relative;
+}
+
+/*header nav ul li:first-child > a {
+  padding-left: 0;
+}
+*/
+header nav ul li:last-child > a {
+  padding-right: 0;
+}
+
+/* Subnavigation (Drop-Down): */
+
+header nav ul ul {
+  background: var(--content-background-color);
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 10px;
+  padding: 0.5em;
+  z-index: 1;
+  border: var(--border);
+  min-width: 100%;
+  box-shadow: 0px 1px 5px rgba(0,0,0,0.2);
+}
+
+header nav ul li:hover ul,
+header nav ul li:focus-within ul {
+  display: block;
+}
+
+header nav ul li strong {
+  color: var(--link-color);
+  text-decoration: underline;
+  font-weight: normal;
+}
+
+header nav ul ul li a {
+  display: block;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.menu-item {
+  display: block;
+  padding: 5px 0px;
+  margin: 3px;
+  font-weight: bold;
+  color: #196b52 !important;
+  background-color: #9ff2c4;
+  text-align: center;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+  box-shadow: inset 0px 12px 10px -5px #c8e8d1, inset 0px -10px 10px -10px #197352;
+  transition: all 0.1s ease;
+}
+.menu-item:hover, .reveal-btn:hover {
+  background-color: #72d09c;
+  box-shadow: inset 0px 12px 10px -5px #9ff2c4, inset 0px -10px 10px -10px #197352;
+  color: #fff5f5;
+  position: relative;
+  top: 1px;
+  left: 1px;
+}
+
+/* -------------------------------------------------------- */
+/* CONTENT */
+/* -------------------------------------------------------- */
+
+main {
+  line-height: 1.5;
+}
+
+main a,
+main a:visited {
+  color: var(--link-color);
+}
+
+main a:hover,
+main a:focus {
+  color: var(--link-color-hover);
+  text-decoration-style: wavy;
+}
+
+main p,
+main .image,
+main .full-width-image,
+main .two-columns {
+  margin: 0.75em 0;
+}
+
+main ol,
+main ul {
+  margin: 0.5em 0;
+  padding-left: 1.5em;
+}
+
+main ol li,
+main ul li {
+  margin-bottom: 0.2em;
+  line-height: 1.3;
+  line-height: 1.6em; /*I find the default HTML line-height tends to be a bit claustrophobic for main text*/
+  font-weight: var(--font-weight);
+  font-size: var(--font-size);
+  letter-spacing: var(--letter-spacing);
+}
+
+main ol {
+  padding-left: 2em;
+}
+
+main blockquote {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin: 1em 0;
+  border-radius: 10px;
+}
+
+main pre {
+  margin: 1em 0 1.5em;
+}
+
+main code {
+  text-transform: none;
+}
+
+main center {
+  margin: 1em 0;
+  padding: 0 1em;
+}
+
+main hr {
+  border: 0;
+  border-top: var(--border);
+  margin: 1.5em 0;
+}
+
+/* HEADINGS: */
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+  font-family: "argent-pixel-cf", sans-serif;
+  margin-bottom: 0;
+  line-height: 1.5;
+  text-align: center;
+}
+
+main h1:first-child,
+main h2:first-child,
+main h3:first-child,
+main h4:first-child,
+main h5:first-child,
+main h6:first-child {
+  margin-top: 0;
+}
+
+main h1 {
+  font-size: 1.5em;
+}
+
+main h2 {
+  font-size: 1.4em;
+}
+
+main h3 {
+  font-size: 1.3em;
+}
+
+main h4 {
+  font-size: 1.2em;
+}
+
+main h5 {
+  font-size: 1.1em;
+}
+
+main h6 {
+  font-size: 1em;
+}
+
+/* COLUMNS: */
+
+.two-columns {
+  display: flex;
+}
+
+.two-columns > * {
+  flex: 1 1 0;
+  margin: 0;
+}
+
+.two-columns > *:first-child {
+  padding-right: 0.75em;
+}
+
+.two-columns > *:last-child {
+  padding-left: 0.75em;
+}
+
+/* -------------------------------------------------------- */
+/* CONTENT IMAGES */
+/* -------------------------------------------------------- */
+
+.image {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.full-width-image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.images {
+  display: flex;
+  width: calc(100% + 5px + 5px);
+  margin-left: -5px;
+  margin-right: -5px;
+}
+
+.images img {
+  width: 100%;
+  height: auto;
+  padding: 5px;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* -------------------------------------------------------- */
+/* ACCESSIBILITY */
+/* -------------------------------------------------------- */
+
+/* please do not remove this. */
+
+#skip-to-content-link {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  line-height: 1;
+  font-size: 1.25rem;
+  background-color: var(--content-background-color);
+  color: var(--text-color);
+  transform: translateY(-3rem);
+  transition: transform 0.1s ease-in;
+  z-index: 99999999999;
+}
+
+#skip-to-content-link:focus,
+#skip-to-content-link:focus-within {
+  transform: translateY(0);
+}
+
+/* -------------------------------------------------------- */
+/* MOBILE RESPONSIVE */
+/* -------------------------------------------------------- */
+
+/* CSS Code for devices < 800px */
+@media (max-width: 800px) {
+  body {
+    font-size: 14px;
+  }
+
+  .layout {
+    width: 100%;
+    grid-template: "logo-container" auto "header" auto  "leftSidebar" auto "rightSidebar" auto "main" auto "footer" auto / 1fr;
+    /* Confused by the grid? Check out my tutorial: https://petrapixel.neocities.org/coding/positioning-tutorial#grid */
+  }
+
+  
+  .sidebar-title button {
+    display: inherit;
+  }
+  .sidebar-section:first-child {
+    border-radius: 0px 0px 8px 8px;
+}
+  .mobile-collapse {
+    display: inherit;
+  }
+  summary {
+    display: flex;
+    padding: 5px 15px;
+    border-radius: 8px 8px 0px 0px;
+    background-image: url(../images/checkerboard-texture.jpg);
+    border: 2px solid #fff;
+    box-shadow: -7px 7px 0px #372f28;
+  }
+  .sidebar-holder {
+    display: none;
+  }
+
+  aside {
+    padding: 9px;
+    font-size: 0.9em;
+  }
+
+  
+  nav {
+    padding: 0;
+  }
+
+  nav > ul {
+    padding-top: 0.5em;
+  }
+
+  nav > ul li > a,
+  nav > ul li > details summary,
+  nav > ul li > strong {
+    padding: 0.5em;
+  }
+
+  main {
+    max-height: none;
+    padding: 15px;
+  }
+
+  .images {
+    flex-wrap: wrap;
+  }
+
+  .images img {
+    width: 100%;
+  }
+
+  #skip-to-content-link {
+    font-size: 1rem;
+  }
+  .meena-holder {
+    width: 50% !important;
+  }
+  .list-holder-mobile {
+    display: block;
+  }
+  .list-holder {
+    display: none; 
+  }
+  .mixtape li {
+    font-size: 18px;
+    line-height: 1.8;
+  }
+  .support-description p {
+    font-size: 1.2em;
+  }
+  .support-description h4 {
+    font-size: 1.7em;
+  }
+  .pet-sprite {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    display: block;
+  }
+  .status-text {
+    font-size: 1.7em;
+    margin: 10px;
+  }
+  #mobile-counter-container {
+    margin: 0 !important;
+    background: #f4ead3;
+    display: grid;
+    grid-auto-flow: column;
+  }
+  .bean-holder {
+    width: 100%;
+  }
+  #increment-btn {
+    width: 100%;
+    margin: 0px;
+  }
+  .counter-display {
+    text-align: center;
+    padding: 16px;
+  }
+  .count-number {
+    font-size: 2.25em;
+  }
+  .meena-holder {
+    display: block;
+    margin: 10px auto !important;
+  }
+  #musicplayer {
+    width: 100%;
+  }
+}
+
+p {
+  line-height: 1.6em; /*I find the default HTML line-height tends to be a bit claustrophobic for main text*/
+  font-weight: var(--font-weight);
+  font-size: var(--font-size);
+  letter-spacing: var(--letter-spacing);
+}
+
+hr {
+  border: solid #c7b591;
+  border-width: 2px 0 0 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 0.5em;
+  image-rendering: pixelated;
+  margin-bottom: 0.5em;
+}
+.right {
+  float: right;
+  margin-left: 1em;
+}
+.left {
+  float: left;
+  margin-right: 1em;
+}
+.center {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+
+@media only screen and (min-width: 600px) {
+  .small {
+    max-width: 60%;
+    height: auto;
+  }
+}
+.caption {
+  margin-top: 0;
+  font-size: 0.9em;
+  font-style: italic;
+}
+
+/*POST LIST STYLE*/
+#postlistdiv ul {
+  font-size: 1.2em;
+  padding: 0;
+  list-style-type: none;
+}
+#recentpostlistdiv ul {
+  font-size: 1.2em;
+  padding: 0;
+  list-style-type: none;
+}
+.moreposts {
+  font-size: 0.8em;
+  margin-top: 0.2em;
+}
+
+/*NEXT AND PREVIOUS LINKS STYLE*/
+#nextprev {
+  text-align: center;
+  margin-top: 1.4em;
+}
+
+/*DISQUS STYLE*/
+#disqus_thread {
+  margin-top: 1.6em;
+}
+
+/*FOOTER STYLE*/
+#footer {
+  font-size: 0.8em;
+  padding: 0 5% 10px 5%;
+}
