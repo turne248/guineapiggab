@@ -35,6 +35,11 @@ let postsArray = [
 //[ "posts/2020-11-10-HTML-cheat-sheet.html" ],
 [ "posts/2026-09-09-whats-this-all-about.html", encodeURI("What's this all about?") ] ];
 
+let relativePath = ".";
+if ( url.includes("posts/") ) {
+  relativePath = "..";
+}
+
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 /*CAUTION!! BEGINNING OF MORE ADVANCED SECTION!
