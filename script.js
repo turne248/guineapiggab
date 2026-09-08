@@ -59,16 +59,16 @@ if ( url.includes("posts/") ) {
   relativePath = "..";
 }
 
-let titleHTML = '<a class="logo-holder" href="' + relativePath + '/index.html"><img class="logo" src="' + relativePath + '/images/gpg-logo-sm.png"></a>';
+let titleHTML = '<a class="logo-holder" href="' + relativePath + '/"><img class="logo" src="' + relativePath + '/images/gpg-logo-sm.png"></a>';
 
 //Generate the Header HTML, a series of list items containing links.
-let headerHTML = '<div class="header-content"> <nav> <ul style="padding-left: 0 !important;"> <li><a href="' + relativePath + '/index.html" class="menu-item">Home</a></li>' + 
+let headerHTML = '<div class="header-content"> <nav> <ul style="padding-left: 0 !important;"> <li><a href="' + relativePath + '/" class="menu-item">Home</a></li>' + 
 '<li><a href="' + relativePath + '/about.html" class="menu-item">About Me</a></li>' +
 '<li><a href="' + relativePath + '/blog.html" class="menu-item">Blog</a></li>' +
 '<li><a href="' + relativePath + '/faq.html" class="menu-item">FAQ</a></li>' +
 '<li><a href="' + relativePath + '#" class="menu-item">Piggy Cam (coming soon)</a></li> </ul> </nav> </div>';
 
-let mobileheaderHTML = '<div class="header-content"> <nav> <ul style="padding-left: 0 !important;"> <li><a href="' + relativePath + '/index.html" class="menu-item">Home</a></li>' + 
+let mobileheaderHTML = '<div class="header-content"> <nav> <ul style="padding-left: 0 !important;"> <li><a href="' + relativePath + '/" class="menu-item">Home</a></li>' + 
 '<li><a href="' + relativePath + '/about.html" class="menu-item">About Me</a></li>' +
 '<li><a href="' + relativePath + '/blog.html" class="menu-item">Blog</a></li>' +
 '<li><a href="' + relativePath + '/faq.html" class="menu-item">FAQ</a></li>' +
@@ -222,17 +222,17 @@ let prevlink = "";
  a "Next Post" link, right? And vice versa with the oldest 
  post! That's what the following code handles.*/
 if ( postsArray.length < 2 ) {
-  nextprevHTML = '<a href="' + relativePath + '/index.html">Home</a>';
+  nextprevHTML = '<a href="' + relativePath + '/">Home</a>';
 } else if ( currentIndex === 0 ) {
   prevlink = postsArray[currentIndex + 1][0];
-  nextprevHTML = '<a href="' + relativePath + '/index.html">Home</a> | <a href="'+ relativePath + '/' + prevlink +'">Previous Post \u00BB</a>';
+  nextprevHTML = '<a href="' + relativePath + '/">Home</a> | <a href="'+ relativePath + '/' + prevlink +'">Previous Post \u00BB</a>';
 } else if ( currentIndex === postsArray.length - 1 ) {
   nextlink = postsArray[currentIndex - 1][0];
-  nextprevHTML = '<a href="' + relativePath + '/' + nextlink +'">\u00AB Next Post</a> | <a href="' + relativePath + '/index.html">Home</a>';
+  nextprevHTML = '<a href="' + relativePath + '/' + nextlink +'">\u00AB Next Post</a> | <a href="' + relativePath + '/">Home</a>';
 } else if ( 0 < currentIndex && currentIndex < postsArray.length - 1 ) {
   nextlink = postsArray[currentIndex - 1][0];
   prevlink = postsArray[currentIndex + 1][0];
-  nextprevHTML = '<a href="' + relativePath + '/'+ nextlink +'">\u00AB Next Post</a> | <a href="' + relativePath + '/index.html">Home</a> | <a href="' + relativePath + '/'+ prevlink +'">Previous Post \u00BB</a>';
+  nextprevHTML = '<a href="' + relativePath + '/'+ nextlink +'">\u00AB Next Post</a> | <a href="' + relativePath + '/">Home</a> | <a href="' + relativePath + '/'+ prevlink +'">Previous Post \u00BB</a>';
 }
 
 //-----------------------------
