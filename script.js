@@ -92,11 +92,11 @@ let mobileaudioplayerHTML = '<div id="musicplayer"><div class="title-color"><div
 let guestbookHTML = '<div class="sidebar-title"><a href="' + relativePath + '/guestbook.html"><img class="section-heading" src="' + relativePath + '/images/leave-me-a-message.gif" style="height: 26px; padding: 0px 10px;"></a></div>';
 let mobileguestbookHTML = '<div class="sidebar-title"><a href="' + relativePath + '/guestbook.html"><img class="section-heading" src="' + relativePath + '/images/leave-me-a-message.gif" style="height: 26px; padding: 0px 10px;"></a></div>';
 
-let counterHTML = '<div class="sidebar-title" style="padding-left:10px;"><img class="section-heading" src="' + relativePath + '/images/bean-counter.gif"></div> <div class="bean-holder"><div class="meena-holder" style="padding:0px 10px; margin: 0;"><img src="' + relativePath + '/images/bean.png" style="margin: 5px 0px 0px 0px;"></div></div><div style="width: 100%;"><div class="counter-display"><span class="count-number">000000</span></div><button id="increment-btn" onclick="incrementGlobalCounter()">+ Click</button></div>';
+let counterHTML = '<div class="sidebar-title" style="padding-left:20px;"><img class="section-heading" src="' + relativePath + '/images/bean-counter.gif"></div> <div class="bean-holder"><div class="meena-holder" style="padding:0px 10px; margin: 0;"><img src="' + relativePath + '/images/bean.png" style="margin: 5px 0px 0px 0px;"></div></div><div style="width: 100%;"><div class="counter-display"><span class="count-number">000000</span></div><button id="increment-btn" onclick="incrementGlobalCounter()">+ Click</button></div>';
 let mobilecounterHTML = '<div class="sidebar-title" style="padding-left:10px;"><img class="section-heading" src="' + relativePath + '/images/bean-counter.gif"></div> <div class="bean-holder"><div class="meena-holder" style="padding:0px 10px; margin: 0;"><img src="' + relativePath + '/images/bean.png" style="margin: 5px 0px 0px 0px;"></div></div><div style="width: 100%;"><div class="counter-display"><span class="count-number">000000</span></div><button id="increment-btn" onclick="incrementGlobalCounter()">+ Click</button></div>';
 
-let supportHTML = '<div class="sidebar-title" style="padding-left:20px;"><img class="section-heading" src="' + relativePath + '/images/support.gif"></div> <div class="support-container"> <div class="meena-holder" style="width: 180%; margin-right: 10px; margin-bottom: -3px;"> <a href="https://ko-fi.com/guineapiggab"><img src="' + relativePath + '/images/oz-head.png"></a> </div> <div style="align-content: center;"> <a href="https://ko-fi.com/guineapiggab"><img src="' + relativePath + '/images/piggy-bank.gif"></a> </div> </div> <div class="support-description"> <p>All proceeds go towards future vet bills</p> </div>';
-let mobilesupportHTML = '<div class="sidebar-title" style="padding-left: 20px;"><img class="section-heading" src="' + relativePath + '/images/support.gif"></div> <div class="support-container"> <div class="meena-holder" style="width: 180%; margin-right: 10px; margin-bottom: -3px;"> <a href="https://ko-fi.com/guineapiggab"><img src="' + relativePath + '/images/oz-head.png"></a> </div> <div style="align-content: center;"> <a href="https://ko-fi.com/guineapiggab"><img src="' + relativePath + '/images/piggy-bank.gif"></a> </div> </div> <div class="support-description"> <p>All proceeds go towards future vet bills</p><div class="menu-item"> <h4 style="text-align: center; margin: 0;">▶ <a href="' + relativePath + '/support.html"><strong>Learn More About Oz</strong></a></h4></div></div>';
+let supportHTML = '<div class="sidebar-title" style="padding-left:20px;"><img class="section-heading" src="' + relativePath + '/images/support.gif"></div> <div class="support-container"> <div class="meena-holder" style="width: 180%; margin-right: 10px; margin-bottom: -3px;"> <a href="https://ko-fi.com/guineapiggab"><img src="' + relativePath + '/images/oz-head.png"></a> </div> <div style="align-content: center;"> <a href="https://ko-fi.com/guineapiggab"><img src="' + relativePath + '/images/piggy-bank.gif" style="filter: saturate(4);"></a> </div> </div> <div class="status-text"> <div class="support-description"> <p>All proceeds go towards future vet bills</p> </div></div>';
+let mobilesupportHTML = '<div class="sidebar-title" style="padding-left: 20px;"><img class="section-heading" src="' + relativePath + '/images/support.gif"></div> <div class="support-container"> <div class="meena-holder" style="width: 180%; margin-right: 10px; margin-bottom: -3px;"> <a href="https://ko-fi.com/guineapiggab"><img src="' + relativePath + '/images/oz-head.png"></a> </div> <div style="align-content: center;"> <a href="https://ko-fi.com/guineapiggab"><img src="' + relativePath + '/images/piggy-bank.gif" style="filter: saturate(4);"></a> </div> </div> <div class="support-description"> <p>All proceeds go towards future vet bills</p></div>';
 
 let mobilepetwidgetHTML = '<img id="pet" class="pet-sprite" src="' + relativePath + '/images/georgie.png" onclick="interactPet()"> <div id="status" class="status-text">Pet me!</div>';
 let petwidgetHTML = '<img id="pet" class="pet-sprite" src="' + relativePath + '/images/georgie.png" onclick="interactPet()"> <div id="status" class="status-text">Pet me!</div>';
@@ -596,9 +596,9 @@ const GUESSING_GAME_LIBRARY = [
     name: "Georgie!", 
     image: `${relativePath}/images/georgie-nose.jpg`, 
     // Target the specific area to zoom into for the hint:
-    focus: "50% 20%", 
-    transformOrigin: "center",
-    zoomLevel: "300%" 
+    focus: "45% 50%", 
+    transformOrigin: "45% 50%",
+    zoomLevel: "400%" 
   },
   { 
     name: "Scooter!", 
@@ -631,15 +631,15 @@ const GUESSING_GAME_LIBRARY = [
   { 
     name: "Meena!", 
     image: `${relativePath}/images/meena-nose.jpg`, 
-    focus: "45% 30%", 
-    transformOrigin: "center",
+    focus: "35% 80%", 
+    transformOrigin: "35% 80%",
     zoomLevel: "400%" 
   },
   { 
     name: "Mimosa!", 
     image: `${relativePath}/images/mimosa-nose.jpg`, 
-    focus: "45% 30%", 
-    transformOrigin: "center",
+    focus: "45% 80%", 
+    transformOrigin: "45% 80%",
     zoomLevel: "400%" 
   }
 ];

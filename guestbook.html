@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Blog Post</title> <!-- If you leave title as "Blog Post", it will automatically be updated to the post title -->
+    <title>Leave Me A Message</title> <!-- If you leave title as "Blog Post", it will automatically be updated to the post title -->
+    <meta name="description" content="Guinea Pig Gab is a fun and informative corner of the internet devoted to the cutest and sweetest critters in the world!">
+    <!-- This specifies the favicon (little icon on the browser tab) -->
     <link rel="icon" href="https://storage.ko-fi.com/cdn/useruploads/5e4b4c61-8b36-4266-9423-e362941640ae_434eb2f9-16ab-45b4-8b5f-90d44f19bf79.png" type="image/x-icon"/>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@1,400..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.typekit.net/mcv8vji.css">
+    <!-- This helps our site look consistent across devices -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="style/style.css">
+    <meta charset="UTF-8"> 
+    <!-- Here's the link to our CSS stylesheet! -->
+    <link rel="stylesheet" href="https://use.typekit.net/mcv8vji.css">
+    <link href="style/style.css" rel="stylesheet" type="text/css" media="all">  
   </head>
   <body>
   <div class="layout">
@@ -29,14 +30,14 @@
           <!-- The hidden content area -->
           <div class="collapse-content">
             <div class="sidebar-section">
-              <div class="sidebar-title"><img class="section-heading" src="/images/navigation.gif" style="padding: 0px 20px;"></div>
+              <div class="sidebar-title"><img class="section-heading" src="images/navigation.gif" style="padding: 0px 20px;"></div>
               <header id="mobile-header" style="margin-top: 0px;">...</header>
             </div>
             <div class="sidebar-section" style="padding: 0;">
                 <div class="status-container" style="margin: 0;">...</div>  
             </div>
             <!--<div class="sidebar-section">
-              <div class="sidebar-title"><img class="section-heading" src="/images/newest-posts.gif"></div>
+              <div class="sidebar-title"><img class="section-heading" src="../images/newest-posts.gif"></div>
                 <div id="mobile-recentpostlistdiv"></div>
             </div>-->
             <div class="sidebar-section" style="padding: 0;">
@@ -46,7 +47,7 @@
               <div id="mobile-shoutout-container">...</div>
             </div>
             <div class="sidebar-section" style="padding: 0;">
-              <div class="sidebar-title"><img class="section-heading" src="/images/piggy-pic-of-the-day.gif" style="height: 30px; padding-left: 20px;"></div>
+              <div class="sidebar-title"><img class="section-heading" src="images/piggy-pic-of-the-day.gif" style="height: 30px; padding-left: 20px;"></div>
               <div id="mobile-potd-widget">...</div>
             </div>
             <div class="sidebar-section" style="padding: 0;border: none;outline: none;">
@@ -58,8 +59,11 @@
           </div>
         </details>
         <div class="sidebar-holder">
-          <div class="sidebar-section">
-            <div class="sidebar-title"><img class="section-heading" src="/images/navigation.gif" style="padding: 0px 20px;"></div>
+          <div class="aside-piggy">
+            <img src="images/piggy-run.gif">
+          </div>
+          <div class="sidebar-section" style="padding: 0;">
+            <div class="sidebar-title"><img class="section-heading" src="images/navigation.gif" style="padding: 0px 20px;"></div>
             <header id="header" style="margin-top: 0px;">...</header>
           </div>
         
@@ -68,7 +72,7 @@
           </div>
         
           <div class="sidebar-section" style="padding: 0;">
-            <div class="sidebar-title" style="padding-left: 20px"><img class="section-heading" src="/images/newest-posts.gif"></div>
+            <div class="sidebar-title" style="padding-left: 20px"><img class="section-heading" src="images/newest-posts.gif"></div>
             <div id="recentpostlistdiv" style="margin-top: 0;"></div>
           </div>
 
@@ -81,7 +85,7 @@
           </div>
         
           <div class="sidebar-section" style="padding: 0;">
-            <div class="sidebar-title"><img class="section-heading" src="/images/piggy-pic-of-the-day.gif" style="height: 30px; padding-left: 20px;"></div>
+            <div class="sidebar-title"><img class="section-heading" src="images/piggy-pic-of-the-day.gif" style="height: 30px; padding-left: 20px;"></div>
             <div id="potd-widget">...</div>
           </div>
           <div class="sidebar-section" style="padding: 0;border: none;outline: none;">
@@ -97,6 +101,7 @@
       <!-- RIGHT SIDEBAR -->
       <!-- =============================================== -->
       <aside class="right-sidebar">
+        
         <details class="mobile-collapse" open>
           <summary><h2>+/- Click me to toggle menu</h2></summary>
           <!-- The clickable button/heading -->
@@ -116,14 +121,14 @@
             </div>
         
             <div class="sidebar-section">
-              <div class="sidebar-title"><img class="section-heading" src="/images/pet-a-piggy.gif"></div>
+              <div class="sidebar-title"><img class="section-heading" src="images/pet-a-piggy.gif"></div>
               <div class="pet-widget-container">
                 <div id="pet-widget-mobile">...</div>
               </div>
             </div>
         
             <div class="sidebar-section">
-              <div class="sidebar-title"><img class="section-heading" src="/images/guess-that-snoot.gif"></div>
+              <div class="sidebar-title"><img class="section-heading" src="images/guess-that-snoot.gif"></div>
               <div id="nose-widget-mobile">...</div>
             </div>
         
@@ -133,8 +138,9 @@
             </div>-->
           </div>
         </details>
+
         <div class="sidebar-holder">
-          <div class="sidebar-section">
+          <div class="sidebar-section" style="padding: 0;">
             <div id="guestbook-container" style="margin-top: 0px;">...</div>
           </div>
 
@@ -147,14 +153,14 @@
           </div>
         
           <div class="sidebar-section" style="padding-top: 0px; padding-bottom: 0px;">
-            <div class="sidebar-title"><img class="section-heading" src="/images/pet-a-piggy.gif"></div>
+            <div class="sidebar-title"><img class="section-heading" src="images/pet-a-piggy.gif"></div>
               <div class="pet-widget-container">
                 <div id="pet-widget">...</div>
               </div>
           </div>
         
           <div class="sidebar-section" style="background: var(--content-background-color);">
-              <div class="sidebar-title"><img class="section-heading" src="/images/guess-that-snoot.gif"></div>
+              <div class="sidebar-title"><img class="section-heading" src="images/guess-that-snoot.gif"></div>
               <div id="nose-widget">...</div>
           </div>
         
@@ -164,6 +170,7 @@
         </div>  
       </aside>
       <main id="content">
+        <img src="https://blob.gifcities.org/gifcities/M3RJHHOVROUAO6DYGTDKIEBDGQCIGVZN.gif" style="position: absolute; top: 203px; filter: hue-rotate(340deg);" class="run-gif">
       <section>
 		<iframe aria-label="Guestbook" id="guestbook" src="http://users3.smartgb.com/g/g.php?a=s&i=g36-42148-f5" style="height:1060px; width: 100%;"></iframe>
 	  </section>
