@@ -33,7 +33,7 @@ let authorLink = "/about"; // Enter your website, social media, etc. Some way fo
 let postsArray = [
 //[ "posts/2020-11-10-Special-Characters-Example.html", encodeURI( 'Spéci@l "Character\'s" Examp|e' ) ],
 //[ "posts/2020-11-10-HTML-cheat-sheet.html" ],
-[ "posts/2026-09-09-whats-this-all-about.html", encodeURI("What's this all about?") ] ];
+[ "posts/2026-09-14-whats-this-all-about.html", encodeURI("What's this all about?") ] ];
 
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -113,7 +113,7 @@ let mobilepotdwidgetHTML = '<div class="photo-frame"><img class="daily-photo"></
  
 //Generate the Footer HTML, which uses the variables defined in the BASIC INFO section above to list info about the site.
 //Note: feel free to remove the references to Zonelets and Neocities! Just be careful not to delete any necessary HTML closing tags or other syntax.
-let footerHTML = "<hr><p>" + blogName + " is written by <a href='" + authorLink + "'>" + authorName + "</a>.";
+let footerHTML = "<div style='display: grid; grid-template-columns: 3fr 2fr 1fr; align-items: center;'><div><a class='footer-links' href='https://github.com/turne248/'>Github</a><a class='footer-links' href='https://ko-fi.com/guineapiggab'>Piggy Bank</a><a class='footer-links' href='robby-turner.com'>See My Work</a><a class='footer-links' href='https:www.instagram.com/itsrober_?'>IG</a></div><div><p style='color: #efefef;'>" + blogName + " is written by <a href='" + authorLink + "'>" + authorName + "</a>.</p><hr></div><div><a href='http://www.snazzyspace.com/generators/viewer-counter/' title='SnazzySpace.com Viewer Counter' target='_blank'><img src='http://www.snazzyspace.com/generators/viewer-counter/counter.php/fid=1789433426/style=5/counter.png' border='0'></a></div>";
 
 //To do the following stuff, we want to know where we are in the posts array (if we're currently on a post page).
 let currentIndex = -1;

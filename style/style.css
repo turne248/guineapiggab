@@ -31,15 +31,15 @@
   /* Text Colors: */
   --text-color: #000000;
   --sidebar-text-color: #000000;
-  --link-color: #3026e8;
-  --link-color-hover: #7780ec;
+  --link-color: #b18368;
+  --link-color-hover: #f4ead3;
 
   /* Text: */
   --font: "Courier New", monospace;
   --heading-font: "argent-pixel-cf", sans-serif;
   --font-size: 11pt;
   --font-weight: bold;
-  --letter-spacing: 2px;
+  --letter-spacing: normal;
 
 
   /* Other Settings: */
@@ -157,6 +157,7 @@ main {
   border: var(--border);
   border-radius: var(--round-borders);
   background-image: url(../images/checkerboard-texture.jpg);
+  height: fit-content;
 }
 
 /* -------------------------------------------------------- */
@@ -206,6 +207,10 @@ header {
   width: 100%;
   height: auto;
 }
+.run-gif {
+  transform: scale(1.0);
+}
+
 
 /* -------------------------------------------------------- */
 /* SIDEBARS */
@@ -913,7 +918,7 @@ footer {
   overflow: hidden;
   font-size: 0.75em;
   padding: 15px;
-  background: var(--content-background-color);
+  background: #372f28;
   display: flex;
   justify-content: center;
 }
@@ -926,6 +931,12 @@ footer a:visited {
 footer a:hover,
 footer a:focus {
   color: var(--link-color-hover);
+}
+.footer-links {
+  color: #efefef !important;
+  margin: 20px;
+  font-size: 12pt;
+  text-decoration: none;
 }
 
 /* -------------------------------------------------------- */
@@ -1053,6 +1064,13 @@ header nav ul ul li a {
   position: relative;
   top: 1px;
   left: 1px;
+}
+.source-list {
+   text-align: left;
+   margin-left: 10px;
+}
+.source-list li::marker {
+  content: "▶ ";
 }
 
 /* -------------------------------------------------------- */
@@ -1247,6 +1265,9 @@ main h6 {
   margin: 0;
   overflow: hidden;
 }
+.collapse-content p {
+    padding: 10px;
+}
 
 /* -------------------------------------------------------- */
 /* ACCESSIBILITY */
@@ -1277,6 +1298,13 @@ main h6 {
 /* -------------------------------------------------------- */
 /* MOBILE RESPONSIVE */
 /* -------------------------------------------------------- */
+@media (max-width: 900px) {
+  .run-gif {
+    top: 205px !important;
+    left: 150px;
+    transform: scale(.7);
+  }
+}
 
 /* CSS Code for devices < 800px */
 @media (max-width: 800px) {
@@ -1310,6 +1338,11 @@ main h6 {
   }
   .sidebar-holder {
     display: none;
+  }
+  .question-title {
+    background-image: none;
+    border: none;
+    box-shadow: none;
   }
 
   aside {
@@ -1405,7 +1438,8 @@ main h6 {
     width: 100%;
   }
   .run-gif {
-    top: 212px !important;
+    top: 216px !important;
+    left: 40px;
   }
 }
 
@@ -1451,8 +1485,8 @@ img {
 }
 .caption {
   margin-top: 0;
-  font-size: 0.9em;
-  font-style: italic;
+  font-size: 0.85em;
+  text-align: center;
 }
 
 /*POST LIST STYLE*/
