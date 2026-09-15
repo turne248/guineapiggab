@@ -627,7 +627,21 @@ background-color: #e7dd89;
   padding: 2px;
   height: 300px;
 }
-
+#chat-holder {
+    display: block;
+    padding: 10px;
+    margin: 3px;
+    font-weight: bold;
+    color: #196b52 !important;
+    background-color: #9ff2c4;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    box-shadow: inset 0px 12px 10px -5px #c0fbd1, inset 0px -10px 10px -10px #197352;
+    transition: all 0.1s ease;
+}
 .blog-img-container {
   width: 90%;
   margin: auto;

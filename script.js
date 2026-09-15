@@ -33,7 +33,7 @@ let authorLink = "/about"; // Enter your website, social media, etc. Some way fo
 let postsArray = [
 //[ "posts/2020-11-10-Special-Characters-Example.html", encodeURI( 'Spéci@l "Character\'s" Examp|e' ) ],
 //[ "posts/2020-11-10-HTML-cheat-sheet.html" ],
-[ "posts/2026-09-14-whats-this-all-about.html", encodeURI("What's this all about?") ] ];
+[ "posts/2026-09-16-whats-this-all-about.html", encodeURI("What's this all about?") ] ];
 
 
 //XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
@@ -105,7 +105,7 @@ let mobileguesswidgetHTML = '<div class="nose-container"> <img class="mystery-im
 let guesswidgetHTML = '<div class="nose-container"> <img class="mystery-img" src="' + relativePath + '/images/cheryl-nose.jpg"> </div> <p class="piggy-name hidden-name" style="margin:0;">???</p><button class="reveal-btn" onclick="revealAnswer()">Reveal</button>';
 
 //let mobilechatwidgetHTML = '';
-let chatwidgetHTML = '<div class="sidebar-title" style="padding-left: 20px;"><img class="section-heading" src="' + relativePath + '/images/chat.gif"></div> <div id="chat-container"></div>';
+let chatwidgetHTML = '<div class="sidebar-title" style="padding-left: 20px;"><img class="section-heading" src="' + relativePath + '/images/chat.gif"></div><div class="status-text">Welcome to Guinea Pig Gab! Feel free to chat below about pigs or anything on your mind! I just ask that you please be respectful of others (:</div> <div id="chat-holder"></div>';
 
 let potdwidgetHTML = '<div class="photo-frame"><img class="daily-photo"></div>';
 let mobilepotdwidgetHTML = '<div class="photo-frame"><img class="daily-photo"></div>';
@@ -747,7 +747,7 @@ function initDailyPhotoWidget() {
 }
  
 function initChatangoWidget() {
-  const target = document.getElementById("chat-container");
+  const target = document.getElementById("chat-holder");
   if (!target) return;
 
   // 1. Create the script element programmatically
@@ -763,17 +763,19 @@ function initChatangoWidget() {
     "handle": "guineapiggab",
     "arch": "js",
     "styles": {
-      "a": "CC0000",
-      "c": "000000",
-      "d": "000000",
+      "a": "196b52",
+      "c": "196b52",
+      "d": "196b52",
+      "e": "000000",
+      "g": "196b52",
+      "k": "196b52",
+      "l": "000000",
+      "m": "196b52",
+      "n": "196b52",
+      "p": "10",
+      "q": "196b52",
       "f": 0,
       "i": 0,
-      "k": "000000",
-      "l": "000000",
-      "m": "CC0000",
-      "n": "FFFFFF",
-      "p": "10",
-      "q": "000000",
       "t": 0,
       "usricon": 0,
       "surl": 0,
