@@ -25,7 +25,7 @@
       <!-- =============================================== -->
 
       <aside class="left-sidebar">
-        <details class="mobile-collapse" open>
+        <details class="mobile-collapse">
         <summary><h2>+/- Click me to toggle menu</h2></summary>
         <!-- The clickable button/heading -->
           <!-- The hidden content area -->
@@ -49,7 +49,7 @@
             </div>
             <div class="sidebar-section" style="padding: 0;">
               <div class="sidebar-title"><img class="section-heading" src="images/piggy-pic-of-the-day.gif" style="height: 30px; padding-left: 20px;"></div>
-              <div id="mobile-potd-widget">...</div>
+              <div id="mobile-potd-widget" style="margin-top:0px">...</div>
             </div>
             <div class="sidebar-section" style="padding: 0;border: none;outline: none;">
                 <div id="mobile-audio-container" style="margin-top: 0;">...</div>
@@ -82,7 +82,7 @@
           </div>
         
           <div class="sidebar-section" style="padding: 0;">
-            <div id="shoutout-container"></div>
+            <div id="shoutout-container" style="margin-top: 0;"></div>
           </div>
         
           <div class="sidebar-section" style="padding: 0;">
@@ -103,8 +103,8 @@
       <!-- =============================================== -->
       <aside class="right-sidebar">
         
-        <details class="mobile-collapse" open>
-          <summary><h2>+/- Click me to toggle menu</h2></summary>
+        <details class="mobile-collapse">
+          <summary><h2>+/- Click me to toggle widgets</h2></summary>
           <!-- The clickable button/heading -->
           <!-- The hidden content area -->
             <div class="collapse-content">
@@ -146,7 +146,7 @@
           </div>
 
           <div class="sidebar-section" style="padding: 0;">
-            <div id="counter-container" style="margin: 0px; padding: 0px; display: flex; align-items: center;">...</div>
+            <div id="counter-container" style="margin: 0px; padding: 0px; display: grid; align-items: center; grid-template-columns: 1fr 2fr; background: #f4ead3;">...</div>
           </div>
         
           <div class="sidebar-section" style="padding: 0;">
@@ -173,31 +173,25 @@
       <main id="content">
         <img src="https://blob.gifcities.org/gifcities/M3RJHHOVROUAO6DYGTDKIEBDGQCIGVZN.gif" style="position: absolute; top: 203px; filter: hue-rotate(340deg);" class="run-gif">
         <section class="section-block">
-          <div class="title-block" style="display: flex;">
-            <img src="https://blob.gifcities.org/gifcities/JU3EOCUALDIV4I4IL2J6WYSCJ6F5MESP.gif" style="margin:auto;">
-            <img src="https://blob.gifcities.org/gifcities/JU3EOCUALDIV4I4IL2J6WYSCJ6F5MESP.gif" style="margin:auto;">
-            <img src="https://blob.gifcities.org/gifcities/JU3EOCUALDIV4I4IL2J6WYSCJ6F5MESP.gif" style="margin:auto;">
-            <img src="https://blob.gifcities.org/gifcities/JU3EOCUALDIV4I4IL2J6WYSCJ6F5MESP.gif" style="margin: auto 40px auto auto;">
-            <h1 class="header-title">Welcome to My Site!</h1>
-            <img src="https://blob.gifcities.org/gifcities/JU3EOCUALDIV4I4IL2J6WYSCJ6F5MESP.gif" style="margin: auto auto auto 40px;">
-            <img src="https://blob.gifcities.org/gifcities/JU3EOCUALDIV4I4IL2J6WYSCJ6F5MESP.gif" style="margin:auto;">
-            <img src="https://blob.gifcities.org/gifcities/JU3EOCUALDIV4I4IL2J6WYSCJ6F5MESP.gif" style="margin:auto;">
-            <img src="https://blob.gifcities.org/gifcities/JU3EOCUALDIV4I4IL2J6WYSCJ6F5MESP.gif" style="margin:auto;">
+          <div class="index-title-block">
+            <div class="title-gif"></div>
+            <h1 class="header-title">Welcome to The Gab!</h1>
+            <div class="title-gif"></div>
           </div>
           <div class="description-block">
             <hr class="dotted">
             <p>Greetings and salutations! This is Guinea Pig Gab, a space dedicated to showcasing the cutest and happiest creatures on the planet! I wanted to dedicate my own little corner online where I could help others understand what actually goes into caring for these little guys, as well as introduce my very own to the world!</p>
-            <div style="display: flex; width: 70%; margin: auto;">
-              <div style="margin: 0px 20px;">
+            <div class="my-pigs-container">
+              <div class="pet-holder">
                 <img src="../images/cheryl.png">
               </div>
-              <div style="margin: 0px 20px;">
+              <div class="pet-holder">
                 <img src="../images/georgie.png">
               </div>
-              <div style="margin: 0px 20px;">
+              <div class="pet-holder">
                 <img src="../images/scooter.png">
               </div>
-              <div style="margin: 0px 20px;">
+              <div class="pet-holder">
                 <img src="../images/sage.png">
               </div>
             </div>
@@ -207,7 +201,7 @@
           </div>
         </section>
         <section class="section-block">
-          <div class="title-block" style="display: grid; grid-template-columns: 1fr 3fr 1fr; overflow: hidden; padding: 0px 20px;">
+          <div class="index-title-block">
             <div style="overflow: hidden; width: 100%; height:20px; margin: auto; background-image: url('https://blob.gifcities.org/gifcities/2EIT5S4EGBEL3BWG6GOVN2GNIEDYTPED.gif'); filter: hue-rotate(305deg);">
             </div> 
             <div style="width: 100%; align-self: center;"><h1 class="header-title"><a href="/about.html" style="text-decoration: none; color: #000;">About Me & My Piggies</a></h1></div>
@@ -221,14 +215,14 @@
                 <p>Me, the human</p>
                 <ul>
                   <li>Name: Robby</li>
-                  <li>Age: 28</li>
+                  <li>Birthday: 09/21/97</li>
                   <li>Other interests: indie music, running, sewing/upcycling, old-school design (duh)</li>
                 </ul>
               </div>
               <div style="margin-left: 20px;">
                 <p>My guinea pigs</p>
                 <ul>
-                  <li>Names: Scooter, Sage, Cheryl, Georgie, Oz, Meena, Mimosa, Summer, Shandy</li>
+                  <li>Names: Scooter, Sage, Cheryl, Georgie, Oz, Meena, Mimosa</li>
                   <li>Favorite veggies: lettuce, cilantro, CARROTS, corn</li>
                   <li>Favorite treats: pea flakes, Oxbow Simple Rewards, Kaytee Timothy Biscuits</li>
                 </ul>
@@ -239,8 +233,8 @@
             </div>
           </div>
         </section>
-        <div style="display: grid; grid-template-columns: 1fr 1fr;">
-          <section class="section-block">
+        <div class="my-pigs">
+        <section class="section-block">
           <div class="title-block" style="display: grid; grid-template-columns: 1fr 1fr 1fr; overflow: hidden; padding: 0px 20px;">
             <div style="overflow: hidden; width: 100%; height:20px; margin: auto; background-image: url('https://blob.gifcities.org/gifcities/MJJOOEKNIGKBGQ3TGSSZ52OKYROLX5FP.gif');">
             </div> 
@@ -308,7 +302,7 @@
           <div class="description-block">
             <hr class="dotted">
             <p>To show how far the site has progressed over time, my aim is to keep a log here of site changes. Now I just have to make sure I remember to update it!</p>
-            <p><strong>09/14/26:</strong>site is now live!</p>
+            <p><strong>09/20/26:</strong>site is now live!</p>
           </div>
         </section>
         </div>

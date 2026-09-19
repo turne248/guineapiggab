@@ -47,7 +47,7 @@
   --padding: 20px;
   --border: 1px solid #b2b2b2;
   --round-borders: 8px;
-  --sidebar-width: 280px;
+  --sidebar-width: 21.5%;
 }
 
 .space-mono-regular {
@@ -346,7 +346,7 @@ aside {
   box-sizing: border-box;
   color: black;
   min-height: 23px;
-  min-width: 75px;
+  /*min-width: 75px;*/
   font-weight: bold;
   padding: 10px 12px 10px 12px;
   text-shadow: 0 0 #222;
@@ -355,13 +355,13 @@ aside {
 }
 .count-number {
   font-family: var(--heading-font);
-  font-size: 18pt;
+  font-size: 1rem;
   font-style: italic;
   letter-spacing: 12px;
 }
 .bean-holder {
-  width: 30%; 
-  margin: 0; 
+  /*width: 30%;*/ 
+  margin: 0 auto; 
   background: #f4ead3;
 }
 #increment-btn {
@@ -950,7 +950,13 @@ footer a:focus {
   color: #efefef !important;
   margin: 20px;
   font-size: 12pt;
+  font-weight: 700;
   text-decoration: none;
+}
+.footer-container {
+  display: grid; 
+  grid-template-columns: 3fr 2fr 1fr; 
+  align-items: center;
 }
 
 /* -------------------------------------------------------- */
@@ -1178,7 +1184,23 @@ hr.dotted {
   box-shadow: inset 0px 12px 10px -5px #f8f8f8, inset 0px -10px 10px -10px #727272;
   transition: all 0.1s ease;
 }
-
+.index-title-block {
+  display: grid; 
+  grid-template-columns: 1fr 3fr 1fr;
+  margin: 0px 10px;
+}
+.pig-bio {
+    display: grid; 
+    grid-template-columns: 1fr 3fr;
+  }
+.my-pigs-container {
+  display: flex; 
+  width: 70%; 
+  margin: auto;
+}
+.pet-holder {
+  margin: 0px 20px;
+}
 .description-block {
   padding: 10px 20px;
 }
@@ -1282,6 +1304,34 @@ main h6 {
 .collapse-content p {
     padding: 10px;
 }
+.title-gif {
+  overflow: hidden;
+  height: auto;
+  width: 100%;
+  background-image: url('https://blob.gifcities.org/gifcities/JU3EOCUALDIV4I4IL2J6WYSCJ6F5MESP.gif');
+  background-repeat: repeat-x;
+  background-position: center;
+}
+.my-pigs {
+  display: grid; 
+  grid-template-columns: 1fr 1fr;
+}
+.meena-title {
+  display: grid; 
+  grid-template-columns: 1fr 2fr 1fr; 
+  overflow: hidden; 
+  padding: 0px 20px;
+}
+.meena-gif {
+  overflow: hidden; 
+  width: 100%; 
+  height:24px; 
+  margin: auto; 
+  background-image: url('https://blob.gifcities.org/gifcities/U3GV4LPCVNXF2JVG7T4MUEWS55T5ISLM.gif'); 
+  background-repeat: no-repeat; 
+  background-size: contain;
+  background-position: center;
+}
 
 /* -------------------------------------------------------- */
 /* ACCESSIBILITY */
@@ -1318,10 +1368,24 @@ main h6 {
     left: 150px;
     transform: scale(.7);
   }
-}
+  .footer-container {
+    display: block;
+    margin: 15px auto 0px;
+  }
+  .viewer-counter {
+    display: none;
+  }
+  .footer-links {
+    margin: 10px;
+  }
+  .my-pigs {
+    display: block;
+  }
 
-/* CSS Code for devices < 800px */
-@media (max-width: 800px) {
+/*}
+
+ CSS Code for devices < 800px 
+@media (max-width: 800px) {*/
   body {
     font-size: 14px;
   }
@@ -1395,9 +1459,7 @@ main h6 {
   #skip-to-content-link {
     font-size: 1rem;
   }
-  .meena-holder {
-    width: 50% !important;
-  }
+  
   .list-holder-mobile {
     display: block;
   }
@@ -1455,6 +1517,15 @@ main h6 {
     top: 216px !important;
     left: 40px;
   }
+  .meena-title {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .meena-gif {
+    background-repeat: repeat-x;
+  }
+  .index-title-block {
+    grid-template-columns: 1fr 3fr 1fr;
+  }
 }
 
 p {
@@ -1495,6 +1566,24 @@ img {
   .small {
     max-width: 60%;
     height: auto;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .index-title-block {
+    grid-template-columns: 1fr 10fr 1fr;
+  }
+  .header-title {
+    font-size: 1.8em;
+  }
+  .my-pigs-container {
+    width: 100%;
+  }
+  .pet-holder {
+    margin: 0 10px;
+  }
+  .pig-bio {
+    display: grid; 
+    grid-template-columns: 1fr 2fr;
   }
 }
 .caption {
