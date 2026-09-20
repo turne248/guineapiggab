@@ -556,10 +556,10 @@ background-color: #e7dd89;
     overflow: hidden;
     position: relative;
   }
-  @media only screen and (max-width: 800px) {
+  /*@media only screen and (max-width: 800px) {
    .nose-container {
     height: 450px;
-  }
+  }*/
   }
 /* The Texture Overlay */
 .nose-container::after {
@@ -588,6 +588,7 @@ background-color: #e7dd89;
   display: block;
   width: 100%;
   height: 100%;
+  margin: 0;
   object-fit: cover; /* Fits image into viewport */
   transition: all 0.5s ease; /* Smooth transition when unzooming */
 }
@@ -602,20 +603,27 @@ background-color: #e7dd89;
   text-align: center;
 }
 .reveal-btn {
-  display: block;
-  margin: 0 auto;
-  padding: 5px 15px;
-  font-weight: bold;
-  color: #196b52 !important;
-  background-color: #9ff2c4;
-  text-align: center;
-  border: 1px solid transparent;
-  border-radius: 5px;
-  text-decoration: none;
-  font-size: 16px;
-  box-shadow: inset 0px 12px 10px -5px #c8e8d1, inset 0px -10px 10px -10px #197352;
-  transition: all 0.1s ease;
-  font-family: var(--font);
+    display: block;
+    border: none;
+    border-radius: 0;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px grey, inset 2px 2px #dfdfdf;
+    box-sizing: border-box;
+    color: black;
+    min-height: 23px;
+    min-width: 75px;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: auto;
+    width: 100%;
+    padding: 12px;
+    text-shadow: 0 0 #222;
+    background: #d6b69b;
+    text-align: center;
+    font-family: var(--font);
+    }
+.reveal-btn:active {
+    box-shadow: inset -1px -1px #fff, inset 1px 1px #0a0a0a, inset -2px -2px #dfdfdf, inset 2px 2px grey;
+    text-shadow: 1px 1px #222;
 }
 .revealed-name {
   color: #000;
@@ -1204,6 +1212,10 @@ hr.dotted {
 .description-block {
   padding: 10px 20px;
 }
+.about-desc {
+  display: grid; 
+  grid-template-columns: 2fr 3fr;
+}
 /* HEADINGS: */
 
 main h1,
@@ -1364,9 +1376,8 @@ main h6 {
 /* -------------------------------------------------------- */
 @media (max-width: 900px) {
   .run-gif {
-    top: 205px !important;
-    left: 150px;
-    transform: scale(.7);
+    top: 212px !important;
+    left: 110px;
   }
   .footer-container {
     display: block;
@@ -1445,7 +1456,7 @@ main h6 {
 
   main {
     max-height: none;
-    padding: 15px;
+    /*padding: 15px;*/
   }
 
   .images {
@@ -1472,6 +1483,7 @@ main h6 {
   }
   .support-description p {
     font-size: 1.2em;
+    padding: 0;
   }
   .support-description h4 {
     font-size: 1.7em;
@@ -1513,10 +1525,6 @@ main h6 {
   #musicplayer {
     width: 100%;
   }
-  .run-gif {
-    top: 216px !important;
-    left: 40px;
-  }
   .meena-title {
     grid-template-columns: 1fr 1fr 1fr;
   }
@@ -1525,6 +1533,9 @@ main h6 {
   }
   .index-title-block {
     grid-template-columns: 1fr 3fr 1fr;
+  }
+  .about-desc {
+    grid-template-columns: auto;
   }
 }
 
@@ -1584,6 +1595,26 @@ img {
   .pig-bio {
     display: grid; 
     grid-template-columns: 1fr 2fr;
+  }
+  .footer-links {
+    font-size: 1.1em;
+  }
+  .footer-container p {
+    font-size: 1.1em;
+  }
+  .run-gif {
+    top: 222px !important;
+    left: 0px;
+    transform: scale(.95);
+  }
+  .support-description {
+    font-size: 12px;
+  }
+  .status-text {
+    margin: 0;
+  }
+  .mixtape li {
+    font-size: 12px;
   }
 }
 .caption {
