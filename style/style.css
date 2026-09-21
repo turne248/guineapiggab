@@ -469,7 +469,7 @@ background-color: #e7dd89;
 
 .photo-frame {
   width: 100%;
-  height: 300px;
+  aspect-ratio: 1/1;
   overflow: hidden;
 }
 
@@ -1375,7 +1375,7 @@ main h6 {
 /* -------------------------------------------------------- */
 /* MOBILE RESPONSIVE */
 /* -------------------------------------------------------- */
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   .run-gif {
     top: 212px !important;
     left: 110px;
@@ -1483,7 +1483,7 @@ main h6 {
     line-height: 1.8;
   }
   .support-description p {
-    font-size: 1.2em;
+    font-size: 12pt;
     padding: 0;
   }
   .support-description h4 {
@@ -1573,13 +1573,23 @@ img {
   margin-left: auto;
   text-align: center;
 }
-
+@media only screen and (max-width: 715px) {
+  .run-gif {
+    left: 0px;
+  }
+}
+@media only screen and (420px <= width <= 600px) {
+  .run-gif {
+    top: 212px;
+  }
+}
 @media only screen and (min-width: 600px) {
   .small {
-    max-width: 60%;
+    max-width: 26%;
     height: auto;
   }
 }
+
 @media only screen and (max-width: 600px) {
   .index-title-block {
     grid-template-columns: 1fr 10fr 1fr;
@@ -1604,7 +1614,7 @@ img {
     font-size: 1.1em;
   }
   .run-gif {
-    top: 222px !important;
+    top: 222px;
     left: 0px;
     transform: scale(.95);
   }
