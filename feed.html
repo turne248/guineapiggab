@@ -10,6 +10,7 @@
     <!-- Link to your RSS feed so that browser plugins can find it! -->
     <link rel="stylesheet" href="https://use.typekit.net/mcv8vji.css">
     <link href="./feed.xml" rel="alternate" type="application/rss+xml" title="Guinea Pig Gab">
+    <link href="./style/style.css" rel="stylesheet" type="text/css" media="all">
     <style>
       .feed-post {
         display: block;
@@ -26,8 +27,13 @@
         box-shadow: inset 0px 12px 10px -5px #f8f8f8, inset 0px -10px 10px -10px #727272;
         transition: all 0.1s ease;
       }
+      @media only screen and (min-width: 600px) {
+      .small {
+        max-width: 20%;
+        height: auto;
+        }
+      }
     </style>
-    <link href="./style/style.css" rel="stylesheet" type="text/css" media="all">
   </head>
   <body>
     <div class="layout">

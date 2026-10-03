@@ -24,9 +24,9 @@ let authorLink = "/about"; // Enter your website, social media, etc. Some way fo
 
 /* If you already have an existing pre-RSS posts array that you'd like to preserve
    in your blog's archive, copy that array below. The RSS posts will be added to it later. */
-let postsArray = [
-  [ "posts/2026-10-03-saving-scooter.html", encodeURI("Saving Scooter") ],
-  [ "posts/2026-09-20-whats-this-all-about.html", encodeURI("What's this all about?") ] ];
+let postsArray = [];
+  //[ "posts/2026-10-03-saving-scooter.html", encodeURI("Saving Scooter") ],
+  //[ "posts/2026-09-20-whats-this-all-about.html", encodeURI("What's this all about?") ] ];
 
 //==[ 2b. FETCH RSS ]==
 
@@ -476,53 +476,60 @@ function renderStatusCafeWidget() {
     });
 }
 
-// DEFINE YOUR SONGS HERE
-let track_list = [
-      {
-          name:"Cheryl Purring",
-          artist:"Happy to meet you",
-          path:"https://files.catbox.moe/6v2m7t.mp3"
-      },
-      {
-          name:"POV",
-          artist:"You Walk In & Sage is Hungry",
-          path:"https://files.catbox.moe/wy5aht.mp3"
-      },
-      {
-          name:"Oz Excited",
-          artist:"I smell something!",
-          path:"https://files.catbox.moe/441yw8.mp3"
-      },
-      {
-          name:"Sage Chows Down on Lettuce",
-          artist:"",
-          path:"https://files.catbox.moe/00h39u.mp3"
-      },
-      {
-          name:"Georgie Upset - Teeth Chattering",
-          artist:"Wants to be left alone",
-          path:"https://files.catbox.moe/nw8qaj.mp3"
-      }
-  ];
-  
-// Single Audio Element shared across both controls
-let curr_track = document.getElementById("music");
-if (!curr_track) {
-  curr_track = document.createElement("audio");
-  curr_track.id = "music";
-  document.body.appendChild(curr_track);
-}
+// ===============================================
+// AUDIO PLAYER WIDGET
+// ===============================================
 
+const track_list = [
+  {
+    name: "Cheryl Purring",
+    artist: "Happy to meet you",
+    path: "https://files.catbox.moe/6v2m7t.mp3"
+  },
+  {
+    name: "POV",
+    artist: "You Walk In & Sage is Hungry",
+    path: "https://files.catbox.moe/wy5aht.mp3"
+  },
+  {
+    name: "Oz Excited",
+    artist: "I smell something!",
+    path: "https://files.catbox.moe/441yw8.mp3"
+  },
+  {
+    name: "Sage Chows Down on Lettuce",
+    artist: "",
+    path: "https://files.catbox.moe/00h39u.mp3"
+  },
+  {
+    name: "Georgie Upset - Teeth Chattering",
+    artist: "Wants to be left alone",
+    path: "https://files.catbox.moe/nw8qaj.mp3"
+  }
+];
+
+let curr_track = null;
 let track_index = 0;
 let isPlaying = false;
-let updateTimer;
+let updateTimer = null;
 
 const PAUSE_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-pause-icon"><rect x="14" y="3" width="5" height="18" rx="1"/><rect x="5" y="3" width="5" height="18" rx="1"/></svg>`;
 const PLAY_SVG = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play-icon"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg>`;
 
-// Helper: Query all instances across mobile and desktop
 function getElements(selector) {
   return document.querySelectorAll(selector);
+}
+
+// Safely creates or attaches the HTML5 <audio> element after DOM is ready
+function ensureAudioElement() {
+  if (!curr_track) {
+    curr_track = document.getElementById("music");
+    if (!curr_track) {
+      curr_track = document.createElement("audio");
+      curr_track.id = "music";
+      document.body.appendChild(curr_track);
+    }
+  }
 }
 
 function populateDropdowns() {
@@ -532,14 +539,13 @@ function populateDropdowns() {
     track_list.forEach((track, index) => {
       const option = document.createElement("option");
       option.value = index;
-      option.textContent = `${track.name} — ${track.artist}`;
+      option.textContent = track.artist ? `${track.name} — ${track.artist}` : track.name;
       select.appendChild(option);
     });
     select.value = track_index;
-    
-    // Attach listener to each dropdown
+
     select.onchange = function() {
-      track_index = parseInt(this.value);
+      track_index = parseInt(this.value, 10);
       loadTrack(track_index);
       playTrack();
     };
@@ -547,6 +553,7 @@ function populateDropdowns() {
 }
 
 function loadTrack(index) {
+  ensureAudioElement();
   clearInterval(updateTimer);
   resetValues();
 
@@ -577,12 +584,19 @@ function playpauseTrack() {
 }
 
 function playTrack() {
-  curr_track.play();
-  isPlaying = true;
-  getElements(".playpause-track").forEach(btn => btn.innerHTML = PAUSE_SVG);
+  ensureAudioElement();
+  curr_track.play()
+    .then(() => {
+      isPlaying = true;
+      getElements(".playpause-track").forEach(btn => btn.innerHTML = PAUSE_SVG);
+    })
+    .catch(err => {
+      console.warn("Playback prevented or deferred by browser:", err);
+    });
 }
 
 function pauseTrack() {
+  if (!curr_track) return;
   curr_track.pause();
   isPlaying = false;
   getElements(".playpause-track").forEach(btn => btn.innerHTML = PLAY_SVG);
@@ -601,18 +615,18 @@ function prevTrack() {
 }
 
 function seekTo(event) {
-  // Support seek actions from both mobile and desktop sliders
+  ensureAudioElement();
   const slider = event ? event.target : getElements(".seek_slider")[0];
-  if (slider && !isNaN(curr_track.duration)) {
+  if (slider && !isNaN(curr_track.duration) && curr_track.duration > 0) {
     const seekto = curr_track.duration * (slider.value / 100);
     curr_track.currentTime = seekto;
   }
 }
 
 function seekUpdate() {
-  if (!isNaN(curr_track.duration)) {
+  if (curr_track && !isNaN(curr_track.duration) && curr_track.duration > 0) {
     const seekPosition = curr_track.currentTime * (100 / curr_track.duration);
-    
+
     getElements(".seek_slider").forEach(slider => slider.value = seekPosition);
 
     let currentMinutes = Math.floor(curr_track.currentTime / 60);
@@ -629,9 +643,34 @@ function seekUpdate() {
 }
 
 function initAudioPlayer() {
+  ensureAudioElement();
   populateDropdowns();
   loadTrack(track_index);
+
+  // Bind click & input listeners across both desktop and mobile layouts
+  getElements(".playpause-track").forEach(btn => {
+    btn.onclick = playpauseTrack;
+  });
+  getElements(".next-track").forEach(btn => {
+    btn.onclick = nextTrack;
+  });
+  getElements(".prev-track").forEach(btn => {
+    btn.onclick = prevTrack;
+  });
+  getElements(".seek_slider").forEach(slider => {
+    slider.oninput = seekTo;
+    slider.onchange = seekTo;
+  });
 }
+
+// Expose functions globally for inline HTML event attributes
+window.initAudioPlayer = initAudioPlayer;
+window.playpauseTrack = playpauseTrack;
+window.playTrack = playTrack;
+window.pauseTrack = pauseTrack;
+window.nextTrack = nextTrack;
+window.prevTrack = prevTrack;
+window.seekTo = seekTo;
 
 const PET_LIBRARY = [
   { name: 'Georgie',  idle: `${relativePath}/images/georgie.png`,  happy: `${relativePath}/images/georgie-excited.png` },
@@ -905,53 +944,51 @@ function initChatangoWidget() {
   // 3. Append to target container so the browser executes it
   target.appendChild(chatScript);
 }
-// CountAPI Configuration (Zero-setup public endpoint)
 // ===============================================
-// GLOBAL CLICK COUNTER WIDGET
+// GLOBAL CLICK COUNTER WIDGET (Bulletproof)
 // ===============================================
 
-const COUNTER_NAMESPACE = 'guineapiggab-site';
-const COUNTER_KEY = 'global-clicks';
+const COUNTER_WORKSPACE = 'guineapiggab-site';
+const COUNTER_NAME = 'global-clicks';
 
-// Helper: Formats numbers as 6-digit zero-padded strings
 function formatSixDigits(num) {
-  return String(num).padStart(6, '0');
+  const parsed = parseInt(num, 10);
+  return isNaN(parsed) ? '000000' : String(parsed).padStart(6, '0');
 }
 
-// Helper: Synchronizes formatted count across desktop and mobile elements
 function updateCounterDisplays(count) {
   const displays = document.querySelectorAll('.count-number');
+  
+  if (displays.length === 0) {
+    console.warn('Counter Warning: No elements found with class ".count-number"');
+    return;
+  }
+
   displays.forEach(el => {
     el.textContent = formatSixDigits(count);
   });
 }
 
-// 1. Fetch total count from API on initial page load
+// 1. Fetch total count from CounterAPI v2 on page load
 async function loadGlobalCount() {
   try {
-    const response = await fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
-    
-    // If key doesn't exist yet, create it with /up
-    if (response.status === 404) {
-      const initResponse = await fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${COUNTER_KEY}/up`);
-      const initData = await initResponse.json();
-      const initialVal = initData.count || 1;
-      localStorage.setItem('local_click_fallback', initialVal);
-      updateCounterDisplays(initialVal);
-      return;
-    }
-
-    if (!response.ok) throw new Error('API request failed');
+    const response = await fetch(`https://api.counterapi.dev/v2/${COUNTER_WORKSPACE}/${COUNTER_NAME}`);
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
     const data = await response.json();
-    const serverCount = data.count || 0;
-    
-    // Store in localStorage as local backup
-    localStorage.setItem('local_click_fallback', serverCount);
-    updateCounterDisplays(serverCount);
+    const serverVal = typeof data?.count === 'number' ? data.count :
+                      typeof data?.value === 'number' ? data.value :
+                      typeof data?.data?.count === 'number' ? data.data.count : null;
+
+    if (serverVal !== null) {
+      localStorage.setItem('local_click_fallback', serverVal);
+      updateCounterDisplays(serverVal);
+    } else {
+      const localSaved = localStorage.getItem('local_click_fallback') || 0;
+      updateCounterDisplays(localSaved);
+    }
   } catch (error) {
-    console.warn('API unavailable or blocked on localhost. Falling back to LocalStorage:', error);
-    // Fallback for offline/localhost testing
+    console.warn('CounterAPI unavailable, using LocalStorage:', error);
     const localSaved = localStorage.getItem('local_click_fallback') || 0;
     updateCounterDisplays(localSaved);
   }
@@ -959,32 +996,44 @@ async function loadGlobalCount() {
 
 // 2. Increment count on button click
 function incrementGlobalCounter() {
-  // A. Get current display count & increment locally immediately
   const displays = document.querySelectorAll('.count-number');
-  let newCount = 0;
-  
-  displays.forEach(el => {
-    const current = parseInt(el.textContent, 10) || 0;
-    newCount = current + 1;
-    el.textContent = formatSixDigits(newCount);
-  });
 
-  // Save to LocalStorage immediately so refreshes on localhost preserve it
+  if (displays.length === 0) {
+    console.error('Counter Error: Button clicked, but no HTML element with class ".count-number" exists on the page!');
+    return;
+  }
+
+  // A. Immediate visual update
+  const currentVal = parseInt(displays[0].textContent, 10) || 0;
+  const newCount = currentVal + 1;
+  
+  updateCounterDisplays(newCount);
   localStorage.setItem('local_click_fallback', newCount);
 
-  // B. Send hit to server in background
-  fetch(`https://api.counterapi.dev/v1/${COUNTER_NAMESPACE}/${COUNTER_KEY}/up`)
-    .then(res => res.json())
+  // B. Sync with CounterAPI v2 server
+  fetch(`https://api.counterapi.dev/v2/${COUNTER_WORKSPACE}/${COUNTER_NAME}/up`)
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return res.json();
+    })
     .then(data => {
-      if (data && data.count) {
-        localStorage.setItem('local_click_fallback', data.count);
-        updateCounterDisplays(data.count);
+      const serverVal = typeof data?.count === 'number' ? data.count :
+                        typeof data?.value === 'number' ? data.value :
+                        typeof data?.data?.count === 'number' ? data.data.count : null;
+
+      if (serverVal !== null) {
+        localStorage.setItem('local_click_fallback', serverVal);
+        updateCounterDisplays(serverVal);
       }
     })
     .catch(err => {
-      console.warn('Unable to sync with live server, local count saved:', err);
+      console.warn('CounterAPI sync issue, local increment retained:', err);
     });
 }
+
+// Explicitly bind to window scope so inline onclick attributes can access them
+window.incrementGlobalCounter = incrementGlobalCounter;
+window.loadGlobalCount = loadGlobalCount;
 
 // ===============================================
 // 5. WIDGET INITIALIZATION (Must run AFTER section 4)
@@ -998,7 +1047,7 @@ function initAllWidgets() {
   loadGlobalCount();
   renderStatusCafeWidget();
   initAudioPlayer();
-}
+} 
 
 // Fire the setup after the DOM is fully loaded and HTML is injected
 if (document.readyState === 'loading') {
