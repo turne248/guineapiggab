@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 <channel>
-  <title>my RSS feed's name</title>
-  <description>my RSS feed's description</description>
-  <link>https://example.com/blog/</link>
+  <title>Guinea Pig Gab</title>
+  <description>A blog all about guinea pigs! In this space I share stories, resources, and insights into what care these adorable critters not only need, but deserve</description>
+  <link>https://guineapig-gab.com/</link>
   <atom:link href="https://example.com/blog/feed.xml" rel="self" type="application/rss+xml" />
   <lastBuildDate>Sat, 03 Oct 2026 09:04:16 -0400</lastBuildDate>
   <ttl>60</ttl>
