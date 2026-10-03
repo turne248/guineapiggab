@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Posts</title>
+    <meta name="author" content="Robby">
+    <meta name="description" content="The feed for your blog!">
+    <link rel="icon" href="https://storage.ko-fi.com/cdn/useruploads/5e4b4c61-8b36-4266-9423-e362941640ae_434eb2f9-16ab-45b4-8b5f-90d44f19bf79.png" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8"> 
+    <!-- Link to your RSS feed so that browser plugins can find it! -->
+    <link rel="stylesheet" href="https://use.typekit.net/mcv8vji.css">
+    <link href="./feed.xml" rel="alternate" type="application/rss+xml" title="Guinea Pig Gab">
+    <style>
+      .feed-post {
+        display: block;
+        padding: 5px 10px;
+        margin: 7px;
+        font-weight: bold;
+        /*color: #196b52 !important;*/
+        background-color: #efefef;
+        text-align: left;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        box-shadow: inset 0px 12px 10px -5px #f8f8f8, inset 0px -10px 10px -10px #727272;
+        transition: all 0.1s ease;
+      }
+    </style>
+    <link href="./style/style.css" rel="stylesheet" type="text/css" media="all">
+  </head>
+  <body>
+    <div class="layout">
+     <div class="logo-container">
+        <div id="title">...</div> 
+     </div>
+        
+        
+      <!-- =============================================== -->
+      <!-- LEFT SIDEBAR -->
+      <!-- =============================================== -->
+
+      <aside class="left-sidebar">
+        <details class="mobile-collapse">
+        <summary><h3>+/- click to toggle menu</h3></summary>
+        <!-- The clickable button/heading -->
+          <!-- The hidden content area -->
+          <div class="collapse-content">
+            <div class="sidebar-section">
+              <div class="sidebar-title"><img class="section-heading" src="images/navigation.gif" style="padding: 0px 20px;"></div>
+              <header id="mobile-header" style="margin-top: 0px;">...</header>
+            </div>
+            <div class="sidebar-section" style="padding: 0;">
+                <div class="status-container" style="margin: 0;">...</div>  
+            </div>
+            <!--<div class="sidebar-section">
+              <div class="sidebar-title"><img class="section-heading" src="../images/newest-posts.gif"></div>
+                <div id="mobile-recentpostlistdiv"></div>
+            </div>-->
+            <div class="sidebar-section" style="padding: 0;">
+              <div id="mobile-mixtape-container">...</div>
+            </div>
+            <div class="sidebar-section" style="padding: 0;">
+              <div id="mobile-shoutout-container">...</div>
+            </div>
+            <div class="sidebar-section" style="padding: 0;">
+              <div class="sidebar-title"><img class="section-heading" src="images/piggy-pic-of-the-day.gif" style="height: 30px; padding-left: 20px;"></div>
+              <div id="mobile-potd-widget" style="margin-top:0px">...</div>
+            </div>
+            <div class="sidebar-section" style="padding: 0;border: none;outline: none;">
+                <div id="mobile-audio-container" style="margin-top: 0;">...</div>
+            </div>
+            <!--<div class="sidebar-section">
+              <div id="mobile-contact-container">...</div>
+            </div>-->
+          </div>
+        </details>
+        <div class="sidebar-holder">
+          <div class="aside-piggy">
+            <img src="images/piggy-run.gif">
+          </div>
+          <div class="sidebar-section" style="padding: 0;">
+            <div class="sidebar-title"><img class="section-heading" src="images/navigation.gif" style="padding: 0px 20px;"></div>
+            <header id="header" style="margin-top: 0px;">...</header>
+          </div>
+        
+          <div class="sidebar-section" style="padding: 0;">
+            <div class="status-container" style="margin: 10px;"></div>
+          </div>
+        
+          <div class="sidebar-section" style="padding: 0;">
+            <div class="sidebar-title" style="padding-left: 20px"><img class="section-heading" src="images/newest-posts.gif"></div>
+            <div id="recentpostlistdiv" style="margin-top: 0;"></div>
+          </div>
+
+          <div class="sidebar-section" style="padding: 0 20px;">
+            <div id="mixtape-container"></div>
+          </div>
+        
+          <div class="sidebar-section" style="padding: 0;">
+            <div id="shoutout-container" style="margin-top: 0;"></div>
+          </div>
+        
+          <div class="sidebar-section" style="padding: 0;">
+            <div class="sidebar-title"><img class="section-heading" src="images/piggy-pic-of-the-day.gif" style="height: 30px; padding-left: 20px;"></div>
+            <div id="potd-widget">...</div>
+          </div>
+          <div class="sidebar-section" style="padding: 0;border: none;outline: none;">
+            <div id="audio-container" style="margin-top: 0;">...</div>
+          </div>
+          <!--<div class="sidebar-section">
+            <div id="contact-container">...</div>
+          </div>-->
+        </div>  
+      </aside>
+  
+     <!-- =============================================== -->
+      <!-- RIGHT SIDEBAR -->
+      <!-- =============================================== -->
+      <aside class="right-sidebar">
+        
+        <details class="mobile-collapse">
+          <summary><h3>+/- click to toggle widgets</h3></summary>
+          <!-- The clickable button/heading -->
+          <!-- The hidden content area -->
+            <div class="collapse-content">
+        <!-- The clickable button/heading -->
+            <div class="sidebar-section">
+              <div id="mobile-guestbook-container" style="margin-top: 0px;">...</div>
+            </div>
+            
+            <div class="sidebar-section" style="padding: 0;">
+              <div id="mobile-counter-container">...</div>
+            </div>
+
+            <div class="sidebar-section" style="padding: 0;">
+              <div id="mobile-support-container" style="margin: 0;">...</div>
+            </div>
+        
+            <div class="sidebar-section" style="padding: 0;">
+              <div class="sidebar-title" style="padding-left:20px;"><img class="section-heading" src="images/pet-a-piggy.gif"></div>
+              <div class="pet-widget-container" style="margin: 0;">
+                <div id="pet-widget-mobile" style="margin: 0; background-image: url(images/hay-bg.jpg);">...</div>
+              </div>
+            </div>
+        
+            <div class="sidebar-section" style="padding: 0;">
+              <div class="sidebar-title"><img class="section-heading" src="images/guess-that-snoot.gif"></div>
+              <div id="nose-widget-mobile" style="margin: 0; background: #f4ead3;">...</div>
+            </div>
+        
+            <!--<div class="sidebar-section">
+              <div class="sidebar-title">Chat</div>
+              <div id="chat-container-mobile">...</div>
+            </div>-->
+          </div>
+        </details>
+
+        <div class="sidebar-holder">
+          <div class="sidebar-section" style="padding: 0;">
+            <div id="guestbook-container" style="margin-top: 0px;">...</div>
+          </div>
+
+          <div class="sidebar-section" style="padding: 0;">
+            <div id="counter-container" style="margin: 0px; padding: 0px; display: grid; align-items: center; grid-template-columns: 1fr 2fr; background: #f4ead3;">...</div>
+          </div>
+        
+          <div class="sidebar-section" style="padding: 0;">
+            <div id="support-container" style="margin: 0;">...</div>
+          </div>
+        
+          <div class="sidebar-section" style="padding-top: 0px; padding-bottom: 0px; background-image: url(images/hay-bg-2.jpg);">
+            <div class="sidebar-title" style="padding-left:20px;"><img class="section-heading" src="images/pet-a-piggy.gif"></div>
+              <div class="pet-widget-container" style="margin: 0;">
+                <div id="pet-widget" style="margin: 0;">...</div>
+              </div>
+          </div>
+        
+          <div class="sidebar-section" style="padding: 0px;">
+              <div class="sidebar-title"><img class="section-heading" src="images/guess-that-snoot.gif"></div>
+              <div id="nose-widget" style="margin: 0; background: #f4ead3;">...</div>
+          </div>
+        
+          <div class="sidebar-section" style="padding: 0px 0px 0px 0px">
+            <div id="chat-container" style="margin-top: 0px;">...</div>
+          </div>
+        </div>  
+      </aside>
+    <main id="content" style="max-height: fit-content;">
+    <img src="https://blob.gifcities.org/gifcities/M3RJHHOVROUAO6DYGTDKIEBDGQCIGVZN.gif" style="position: absolute; top: 203px; filter: hue-rotate(340deg);" class="run-gif">
+    <section class="section-block">
+    <!-- FEED EDITORS -->
+    <div class="feed-post" id="post-new" style="display: none;">
+      <div class="feed-post-composer">
+        <h5 class="feed-post-title">NEW POST</h5>
+        <span>title</span>
+        <input id="feed-post-title-input" type="text" onchange="onChangeTitle();" />
+        <span>body</span>
+        <textarea id="feed-post-body-input" rows="16"></textarea>
+        <span>link</span>
+        <input id="feed-post-link-input" type="text" value="https://example.com/blog/posts/YYYY-MM-DD-POST-TITLE.html" disabled />
+        <details>
+          <summary>options</summary>
+          <input type="checkbox" id="feed-post-rss-only-option" onchange="onChangeRssOnlyOption();">rss-only</input>
+          <input type="checkbox" id="feed-post-custom-link-option" onchange="onChangeCustomLinkOption();">custom link</input>
+        </details>
+        <span>
+          <button onclick="saveFeed();">save rss feed</button>
+          <button id="feed-post-save-html-button" onclick="savePage();">save html page</button>
+        </span>
+      </div>
+    </div>
+    <div class="feed-post" id="post-profile" style="display: none;">
+      <div class="feed-post-composer">
+        <h5 class="feed-post-title">UPDATE PROFILE</h5>
+        <span>feed name</span>
+        <input id="feed-channel-title-input" type="text" />
+        <span>feed description</span>
+        <input id="feed-channel-description-input" type="text" />
+        <span>feed link</span>
+        <input id="feed-channel-rsslink-input" type="text" />
+        <span>
+          <button onclick="saveFeedDescription();">save rss feed</button>
+        </span>
+      </div>
+    </div>
+
+    <!-- STATUS -->
+    <h5 class="feed-section-header" id="feed-status-header" style="display: none;">STATUS</h5>
+    <div class="feed-post" id="post-status" style="display: none;">
+      <h3 class="feed-post-title"><a href="?" id="feed-status-title">Status</a></h3>
+      <span id="feed-status-description">Status update text.</span>
+      <div class="feed-post-footer">
+        <a href="?post=status">&#187;</a>
+      </div>
+    </div>
+
+    <!-- POSTS -->
+    <h5 class="feed-section-header">POSTS</h5>
+    <span id="feed-empty-message">Loading posts...</span>
+    </section>
+    </main> <!-- end of div id="content" -->
+
+    <div id="feed-back" style="display: none;">
+      <a href="?">&#171; back</a>
+    </div>
+
+    <footer id="footer"></footer>
+    
+  <!--
+    == Zonelets script ==
+    If zoneRSS is installed with Zonelets, this will run the Zonelets script to do things like populate the header and footer of the page.
+  -->
+  <script src="./script.js"></script>
+
+  <!--
+    == zoneRSS script ==
+    This script adds the zoneRSS-specific features such as rendering posts from your feed, and creating the feed editing tools.
+  -->
+  <script>
+    //==[ 1. BASIC CONFIGURATION ]==
+
+    // note: if you are using zoneRSS with a Zonelets blog, you shouldn't need to change any of these values
+    var rssFeedName = "feed.xml";
+    var postDirectory = "posts/";
+    var postTemplateName = "2020-11-10-Post-Template.html";
+
+    //==[ 2. OPTIONAL CONFIGURATION ]==
+
+    // fill in an email address here to add a "reply" link to your posts
+    var emailAddress = "";
+
+    // set this to "true" to show your feed's description as a status message at the top of the feed
+    var showFeedDescriptionAsStatus = false;
+
+    //==[ 3. INITIALIZE VARIABLES ]==
+
+    // create the relative urls to the rss feed and post template
+    var postTemplateUrl = "./" + postDirectory + postTemplateName;
+    var relativeFeedUrl = "./" + rssFeedName;
+
+    // these values will be initialized after the feed is fetched
+    var feedTitle = "";
+    var feedDescription = "";
+    var feedUrl = "";
+    var blogUrl = "";
+    var lastPostDate = "";
+    var lastPostIndex = -1;
+
+    // these values are used by the feed editing tools
+    var isRssOnlyPost = false;
+    var isCustomLink = false;
+    var onChangeTitle;
+    var onChangeRssOnlyOption;
+    var onChangeCustomLinkOption;
+    var makeCurrentRssDate;
+    var makePostItemXml;
+    var saveFeed;
+    var saveFeedDescription;
+    var savePage;
+
+    function makeDateString(date) {
+      return date.toLocaleString("sv").split(" ")[0];
+    }
+
+    function makeTimestamp(rssDateString) {
+      // try to convert to a short date using JavaScript's built-in Date object
+      if (!isNaN(Date.parse(rssDateString))) {
+        return makeDateString(new Date(rssDateString));
+      }
+
+      // if that fails, try to extract the Day / Month / Year from the RSS date string
+      var rssDateElements = rssDateString.split(" ");
+      if (rssDateElements.length >= 4) {
+        return rssDateElements[1] + " " + rssDateElements[2] + " " + rssDateElements[3];
+      }
+
+      // if all else fails, return the RSS date string as is
+      return rssDateString;
+    }
+
+    //==[ 4. TEMPLATE PATTERNS ]==
+
+    var pageTemplatePatterns = [
+      {
+        find: function() { return "<p>Ready to write? Replace this text with your first paragraph!</p>" },
+        replace: function() { return document.getElementById("feed-post-body-input").value; },
+      },
+    ];
+
+    var feedTemplatePatterns = [
+      {
+        find: function() { return "<lastBuildDate>" + lastPostDate + "</lastBuildDate>"; },
+        replace: function() { return "<lastBuildDate>" + makeCurrentRssDate() + "</lastBuildDate>"; },
+      },
+      {
+        find: function() { return "<!-- ADD NEW POST HERE -->"; },
+        replace: function() { return "<!-- ADD NEW POST HERE -->\n\n" + makePostItemXml(); },
+      },
+    ];
+
+    var feedDescriptionTemplatePatterns = [
+      {
+        find: function() { return "<title>" + feedTitle + "</title>"; },
+        replace: function() { return "<title>" + document.getElementById("feed-channel-title-input").value + "</title>"; },
+      },
+      {
+        find: function() { return "<description>" + feedDescription + "</description>"; },
+        replace: function() { return "<description>" + document.getElementById("feed-channel-description-input").value + "</description>"; },
+      },
+      {
+        find: function() { return "<link>" + blogUrl + "</link>"; },
+        replace: function() { return "<link>" + (document.getElementById("feed-channel-rsslink-input").value.replace(rssFeedName, "")) + "</link>"; },
+      },
+      {
+        find: function() { return '<atom:link href="' + feedUrl + '" rel="self" type="application/rss+xml" />'; },
+        replace: function() { return '<atom:link href="' + document.getElementById("feed-channel-rsslink-input").value + '" rel="self" type="application/rss+xml" />'; },
+      },
+    ];
+
+    //==[ 5. FETCH RSS ]==
+
+    // if it doesn't already exist, create the function for fetching the rss feed
+    if (typeof(rss) != "function") {
+      var feedText = null;
+      function rss(url, onReady) {
+        if (feedText) {
+          onReady(feedText);
+        }
+        else {
+          fetch(url)
+            .then(function(request) {
+              request.text().then(function(text) {
+                feedText = text;
+                onReady(feedText);
+              });
+            });
+        }
+      }
+    }
+
+    // fetch the rss feed: the rest of the page setup will happen after the feed is loaded
+    rss(relativeFeedUrl, function(rssFeedText) {
+
+    //==[ 6. CREATE FEED ]==
+
+    // get the current post ID from the url parameters
+    var currentPostId = null;
+    if (window.location.href.includes("?")) {
+      var urlParameters = window.location.href.split("?")[1].split("&");
+      for (var index = 0; index < urlParameters.length; index++) {
+        var parameter = urlParameters[index].split("=");
+        var parameterName = parameter[0];
+        var parameterValue = parameter[1];
+
+        if (parameterName === "post") {
+          currentPostId = parameterValue;
+        }
+      }
+    }
+
+    // parse the rss feed into an XML object
+    var rssXmlParser = new DOMParser();
+    var rssFeedXml = rssXmlParser.parseFromString(rssFeedText, "text/xml");
+
+    function getElementsOrEmptyArray(xmlElement, tagName) {
+      return (xmlElement != null) ? xmlElement.getElementsByTagName(tagName) : [];
+    }
+
+    function getFirstElementOrNull(xmlElement, tagName) {
+      var elements = getElementsOrEmptyArray(xmlElement, tagName);
+      return (elements.length) > 0 ? elements[0] : null;
+    }
+
+    function getTextContentOrEmptyString(xmlElement) {
+      return (xmlElement != null) ? xmlElement.textContent : "";
+    }
+
+    function getAttributeValueOrEmptyString(xmlElement, attributeName) {
+      if (xmlElement === null) {
+        return "";
+      }
+
+      var attr = xmlElement.attributes[attributeName];
+      if (attr === undefined || attr === null) {
+        return "";
+      }
+
+      return attr.value;
+    }
+
+    // get the rss feed items for each post and other feed information
+    var rssRoot = getFirstElementOrNull(rssFeedXml, "rss");
+    var rssTitle = getFirstElementOrNull(rssFeedXml, "title");
+    var rssDescription = getFirstElementOrNull(rssFeedXml, "description");
+    var rssLink = getFirstElementOrNull(rssFeedXml, "link");
+    var rssAtomLink = getFirstElementOrNull(rssFeedXml, "atom:link");
+    var rssLastBuildDate = getFirstElementOrNull(rssFeedXml, "lastBuildDate");
+    var rssChannel = getFirstElementOrNull(rssRoot, "channel");
+    var rssItems = getElementsOrEmptyArray(rssChannel, "item");
+
+    blogUrl = getTextContentOrEmptyString(rssLink);
+    feedUrl = getAttributeValueOrEmptyString(rssAtomLink, "href");
+    feedTitle = getTextContentOrEmptyString(rssTitle);
+    feedDescription = getTextContentOrEmptyString(rssDescription);
+    lastPostDate = getTextContentOrEmptyString(rssLastBuildDate);
+
+    for (var id in rssItems) {
+      // if there are any posts, hide the "no posts" message
+      document.getElementById("feed-empty-message").style.display = "none";
+
+      var item = rssItems[id];
+
+      if (item.getElementsByTagName) {
+        var itemTitle = getFirstElementOrNull(item, "title");
+        var itemDescription = getFirstElementOrNull(item, "description");
+        var itemPubDate = getFirstElementOrNull(item, "pubDate");
+        var itemLink = getFirstElementOrNull(item, "link");
+        var itemGuid = getFirstElementOrNull(item, "guid");
+
+        var guid = getTextContentOrEmptyString(itemGuid);
+        var itemRelativeLink = getTextContentOrEmptyString(itemLink);
+        var isHtmlPost = itemRelativeLink.includes(blogUrl + postDirectory);
+
+        if (itemRelativeLink.indexOf(blogUrl) === 0) {
+          itemRelativeLink = itemRelativeLink.replace(blogUrl, "");
+        }
+
+        // extract the post index from the guid
+        if (guid.indexOf(feedUrl) === 0) {
+          var postIndex = parseInt(guid.split("#")[1]);
+
+          // keep track of the most recent post index
+          if (postIndex > lastPostIndex) {
+            lastPostIndex = postIndex;
+          }
+
+          // add the post to the page
+          var postContainer = document.createElement("div");
+          postContainer.id = "post-" + postIndex;
+          postContainer.classList.add("feed-post");
+          document.getElementById("content").appendChild(postContainer);
+
+          var postTitle = document.createElement("h3");
+          postTitle.classList.add("feed-post-title");
+          postContainer.appendChild(postTitle);
+
+          var postLink = document.createElement("a");
+          postLink.href = itemRelativeLink;
+          postLink.innerText = getTextContentOrEmptyString(itemTitle);
+          postTitle.appendChild(postLink);
+
+          var postBodyText = getTextContentOrEmptyString(itemDescription);
+
+          // truncate posts with their own HTML page, since the full text is viewable on that page
+          if (isHtmlPost) {
+            // if there is a horizontal rule use that to determine where to truncate the text
+            // otherwise, use the first paragraph break
+            if (postBodyText.includes("<hr>")) {
+              postBodyText = postBodyText.split("<hr>")[0];
+            }
+            else if (postBodyText.includes("</p>")) {
+              postBodyText = (postBodyText.split("</p>")[0]) + "</p>";
+            }
+          }
+
+          var postBody = document.createElement("div");
+          postBody.innerHTML = postBodyText;
+          postContainer.appendChild(postBody);
+
+          // add a "read more" link for posts with their own HTML page
+          if (isHtmlPost) {
+            var postReadMore = document.createElement("p");
+            postContainer.appendChild(postReadMore);
+
+            var postReadMoreLink = document.createElement("a")
+            postReadMoreLink.href = itemRelativeLink;
+            postReadMoreLink.innerText = "read more \u00BB";
+            postReadMore.appendChild(postReadMoreLink);
+          }
+
+          var postFooter = document.createElement("div");
+          postFooter.classList.add("feed-post-footer");
+          postContainer.appendChild(postFooter);
+
+          var publishedDate = getTextContentOrEmptyString(itemPubDate);
+          var postDate = document.createElement("a");
+          postDate.href = "?post=" + postIndex;
+          postDate.innerText = "\u00BB" + makeTimestamp(publishedDate);
+          postFooter.appendChild(postDate);
+
+          if (emailAddress.length > 0) {
+            var postReply = document.createElement("a");
+            postReply.classList.add("feed-post-reply");
+            postReply.href="mailto:" + emailAddress + "?subject=RE: " + getTextContentOrEmptyString(itemTitle);
+            postReply.innerText = "reply";
+            postFooter.appendChild(postReply);
+          }
+        }
+      }
+    }
+
+    if (showFeedDescriptionAsStatus) {
+      document.getElementById("feed-status-header").style.display = "block";
+      document.getElementById("post-status").style.display = "block";
+    }
+
+    // after creating all the posts, set visibility based on the url parameter
+    if (currentPostId) {
+      // hide headers when showing only one post
+      var sectionHeaders = document.getElementsByClassName("feed-section-header");
+      for (var index = 0; index < sectionHeaders.length; index++) {
+        sectionHeaders[index].style.display = "none";
+      }
+
+      // show back link when showing only one post
+      document.getElementById("feed-back").style.display = "block";
+
+      var postContainers = document.getElementsByClassName("feed-post");
+      for (var index = 0; index < postContainers.length; index++) {
+        var postContainer = postContainers[index];
+        console.log(postContainer);
+        postContainer.style.display = (postContainer.id === ("post-" + currentPostId)) ? "block" : "none";
+      }
+    }
+
+    // initialize status post and feed description editor
+    var statusLink = blogUrl;
+    if (typeof(authorLink) === "string") {
+      statusLink = authorLink;
+    }
+    document.getElementById("feed-status-title").href = statusLink;
+
+    var statusTitle = feedTitle;
+    if (typeof(authorName) === "string") {
+      statusTitle = authorName;
+    }
+    document.getElementById("feed-status-title").innerText = statusTitle;
+
+    document.getElementById("feed-status-description").innerText = feedDescription;
+
+    document.getElementById("feed-channel-title-input").value = feedTitle;
+    document.getElementById("feed-channel-description-input").value = feedDescription;
+    document.getElementById("feed-channel-rsslink-input").value = feedUrl;
+
+    // initialize post editor
+    isRssOnlyPost = document.getElementById("feed-post-rss-only-option").checked;
+    document.getElementById("feed-post-save-html-button").disabled = isRssOnlyPost;
+
+    isCustomLink = document.getElementById("feed-post-custom-link-option").checked;
+    document.getElementById("feed-post-link-input").disabled = !isCustomLink;
+
+    document.getElementById("feed-post-link-input").value = makePostLink();
+
+    //==[ 7. FEED EDITING FUNCTIONS ]==
+
+    function makeRssDate(date) {
+      // day & months names source: https://datatracker.ietf.org/doc/html/rfc2822#section-3.3
+      var dayName = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      var monthName = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+      var rssDate = ""
+        // weekday (DAY)
+        + dayName[date.getDay()] + ", "
+        // date (DD MON YYYY)
+        + ("00" + date.getDate()).substr(-2) + " "
+        + monthName[date.getMonth()] + " "
+        + date.getFullYear() + " "
+        // time (HH:MM:SS)
+        + ("00" + date.getHours()).substr(-2) + ":"
+        + ("00" + date.getMinutes()).substr(-2) + ":"
+        + ("00" + date.getSeconds()).substr(-2) + " "
+        // timezone (+/-HHMM)
+        + ((date.getTimezoneOffset() > 0) ? "-" : "+")
+        + ("00" + Math.floor(date.getTimezoneOffset() / 60)).substr(-2) + "00";
+
+      return rssDate;
+    }
+
+    function makePostLink() {
+      var postLink = "";
+
+      if (isCustomLink) {
+        postLink = document.getElementById("feed-post-link-input").value;
+      }
+      else if (isRssOnlyPost) {
+        postLink = blogUrl + "feed.html?post=" + (lastPostIndex + 1);
+      }
+      else {
+        postLink = blogUrl + postDirectory + makePageName();
+      }
+
+      return postLink;
+    }
+
+    function makePageName() {
+      var date = new Date();
+      var title = document.getElementById("feed-post-title-input").value;
+
+      var dateText = date.getFullYear() + "-"
+        + ("00" + (date.getMonth() + 1)).substr(-2) + "-"
+        + ("00" + date.getDate()).substr(-2);
+
+      var pageName = dateText + "-" + title.replace(/\W/g, "-") + ".html";
+      return pageName;
+    }
+
+    onChangeTitle = function() {
+      document.getElementById("feed-post-link-input").value = makePostLink();
+    }
+
+    onChangeRssOnlyOption = function() {
+      isRssOnlyPost = document.getElementById("feed-post-rss-only-option").checked;
+
+      document.getElementById("feed-post-save-html-button").disabled = isRssOnlyPost;
+
+      document.getElementById("feed-post-link-input").value = makePostLink();
+    }
+
+    onChangeCustomLinkOption = function() {
+      isCustomLink = document.getElementById("feed-post-custom-link-option").checked;
+
+      document.getElementById("feed-post-link-input").disabled = !isCustomLink;
+
+      if (isCustomLink) {
+        document.getElementById("feed-post-link-input").value = "";
+      }
+      else {
+        document.getElementById("feed-post-link-input").value = makePostLink();
+      }
+    }
+
+    makeCurrentRssDate = function() {
+      return makeRssDate(new Date());
+    }
+
+    makePostItemXml = function() {
+      var postTitle = document.getElementById("feed-post-title-input").value;
+      var postBody = document.getElementById("feed-post-body-input").value;
+      var postDate = makeCurrentRssDate();
+      var postLink = makePostLink();
+      var postGuid = feedUrl + "#" + (lastPostIndex + 1);
+
+      var postItem = "";
+      postItem += "  <item>\n";
+      postItem += "    <title>" + postTitle + "</title>\n";
+      postItem += "    <description>\n";
+      postItem += "<![CDATA[" + postBody + "]]>\n";
+      postItem += "    </description>\n";
+      postItem += "    <pubDate>" + postDate + "</pubDate>\n";
+      postItem += "    <link>" + postLink + "</link>\n";
+      postItem += "    <guid isPermaLink=\"false\">" + postGuid + "</guid>\n";
+      postItem += "  </item>";
+
+      return postItem;
+    }
+
+    function saveTemplate(fileName, templateText, templatePatterns) {
+      // update the template
+      for (var index = 0; index < templatePatterns.length; index++) {
+        var pattern = templatePatterns[index];
+        templateText = templateText.replace(pattern.find(), pattern.replace());
+      }
+
+      // download the updated file
+      var a = document.createElement('a');
+      var blob = new Blob([templateText]);
+      a.download = fileName;
+      a.href = URL.createObjectURL(blob);
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    saveFeed = function() {
+      saveTemplate(rssFeedName, rssFeedText, feedTemplatePatterns);
+    }
+
+    saveFeedDescription = function() {
+      saveTemplate(rssFeedName, rssFeedText, feedDescriptionTemplatePatterns);
+    }
+
+    savePage = function() {
+      fetch(postTemplateUrl)
+        .then(function(request) {
+          request.text().then(function(templateText) {
+            var pageName = makePageName();
+            if (isCustomLink) {
+              var customLinkElements = document.getElementById("feed-post-link-input").value.split("/");
+              pageName = customLinkElements[customLinkElements.length - 1];
+            }
+
+            saveTemplate(pageName, templateText, pageTemplatePatterns);
+          });
+        });
+    }
+
+    //==[ 8. END RSS FETCH ]==
+
+    });
+  </script>
+  </body>
+</html>

@@ -194,9 +194,17 @@ header {
   padding: var(--padding);
 }*/
 
-.header-title {
+.header-title, .feed-section-header {
   font-family: var(--heading-font);
   font-size: 2.0em;
+  font-weight: 500;
+  font-style: italic;
+  margin: 0;
+  align-self: center;
+}
+.header-subtitle {
+  font-family: var(--heading-font);
+  font-size: 1.25em;
   font-weight: 500;
   font-style: italic;
   margin: 0;
@@ -929,6 +937,16 @@ background-color: #e7dd89;
     min-width: 16px;
     min-height: 14px;
 }
+.link-back {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid var(--text);
+    border-radius: 5px;
+    padding: 10px;
+    padding-top: 15px;
+    background-color: var(--boxbackground);
+}
 
 /* -------------------------------------------------------- */
 /* FOOTER */
@@ -966,6 +984,7 @@ footer a:focus {
   display: grid; 
   grid-template-columns: 3fr 2fr 1fr; 
   align-items: center;
+  width: 100%;
 }
 
 /* -------------------------------------------------------- */
@@ -1585,7 +1604,7 @@ img {
 }
 @media only screen and (min-width: 600px) {
   .small {
-    max-width: 26%;
+    max-width: 36%;
     height: auto;
   }
 }
@@ -1596,6 +1615,9 @@ img {
   }
   .header-title {
     font-size: 1.8em;
+  }
+  .header-subtitle {
+   font-size: 1em;
   }
   .my-pigs-container {
     width: 100%;

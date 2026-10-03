@@ -20,23 +20,101 @@ let authorLink = "/about"; // Enter your website, social media, etc. Some way fo
 
 //-----------------------------
 
-//==[ 2. POSTS ARRAY ]==
+//==[ 2a. HISTORIC POSTS ARRAY ]==
 
-/*Each time you make a new post, add the filepath here at the top of postsArray.
-  This will cause all the right links to appear and work.
-  NOTE: It's important to follow this exact naming convention, because the scripts
-  below are expecting it ( 'posts/YYYY-MM-DD-Title-of-Your-Post.html', ). You can
-  alter the scripts if you want to use a different naming convention*/
-/*UPDATE: as of version 1.3, you may omit the date if you would like. But if you
-  use a date it must still follow that format.*/
-
+/* If you already have an existing pre-RSS posts array that you'd like to preserve
+   in your blog's archive, copy that array below. The RSS posts will be added to it later. */
 let postsArray = [
-//[ "posts/2020-11-10-Special-Characters-Example.html", encodeURI( 'Spéci@l "Character\'s" Examp|e' ) ],
-//[ "posts/2020-11-10-HTML-cheat-sheet.html" ],
-[ "posts/2026-09-20-whats-this-all-about.html", encodeURI("What's this all about?") ] ];
+  [ "posts/2026-10-03-saving-scooter.html", encodeURI("Saving Scooter") ],
+  [ "posts/2026-09-20-whats-this-all-about.html", encodeURI("What's this all about?") ] ];
 
+//==[ 2b. FETCH RSS ]==
 
-//XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// the name of the rss feed: this should match what is defined in feed.html
+var rssFeedName = "feed.xml";
+
+// create the rss feed url
+var rssFeedUrl = (window.location.pathname.includes("posts/") ? ".." : ".")
+  + "/"
+  + rssFeedName;
+
+// this function will be used to fetch the rss feed
+var feedText = null;
+function rss(url, onReady) {
+  if (feedText) {
+    onReady(feedText);
+  }
+  else {
+    fetch(url)
+      .then(function(request) {
+        request.text().then(function(text) {
+          feedText = text;
+          onReady(feedText);
+        });
+      });
+  }
+}
+
+// fetch the rss feed: the rest of the page setup will happen after the feed is loaded
+rss(rssFeedUrl, function(rssFeedText) {
+
+//-----------------------------
+
+//==[ 2c. MAKE POSTS ARRAY FROM RSS ]==
+
+/*Instead of updating the postsArray by hand when making a new post,
+  we will automatically read the post info from the RSS feed.*/
+var rssPostsArray = [];
+
+// parse the rss feed into an XML object
+var rssXmlParser = new DOMParser();
+var rssFeedXml = rssXmlParser.parseFromString(rssFeedText, "text/xml");
+
+function getElementsOrEmptyArray(xmlElement, tagName) {
+  return (xmlElement != null) ? xmlElement.getElementsByTagName(tagName) : [];
+}
+
+function getFirstElementOrNull(xmlElement, tagName) {
+  var elements = getElementsOrEmptyArray(xmlElement, tagName);
+  return (elements.length) > 0 ? elements[0] : null;
+}
+
+function getTextContentOrEmptyString(xmlElement) {
+  return (xmlElement != null) ? xmlElement.textContent : "";
+}
+
+// get the rss feed items for each post and other feed information
+var rssRoot = getFirstElementOrNull(rssFeedXml, "rss");
+var rssLink = getFirstElementOrNull(rssFeedXml, "link");
+var rssChannel = getFirstElementOrNull(rssRoot, "channel");
+var rssItems = getElementsOrEmptyArray(rssChannel, "item");
+
+var blogRoot = getTextContentOrEmptyString(rssLink);
+var postsDirectory = blogRoot + "posts/";
+
+// fill the posts array from the rss feed items
+for (var id in rssItems) {
+  var item = rssItems[id];
+
+  if (item.getElementsByTagName) {
+    var itemTitle = getFirstElementOrNull(item, "title");
+    var itemLink = getFirstElementOrNull(item, "link");
+
+    // only include items from the posts directory in the posts array
+    var itemLinkText = getTextContentOrEmptyString(itemLink);
+    if (itemLinkText.indexOf(postsDirectory) === 0) {
+      var relativeLink = itemLinkText.replace(blogRoot, "");
+      rssPostsArray.push([relativeLink, getTextContentOrEmptyString(itemTitle)]);
+    }
+  }
+}
+
+//==[ 2d. COMBINE WITH HISTORIC POSTS ARRAY ]==
+
+// this line adds the RSS posts to the historic posts array
+postsArray = rssPostsArray.concat(postsArray);
+
+//-----------------------------
 
 /*CAUTION!! BEGINNING OF MORE ADVANCED SECTION!
   For default functionality, you DO NOT have to touch anything beyond this point.
@@ -80,14 +158,17 @@ let mobilestatusHTML = '<div class="sidebar-title"><img class="section-heading" 
 let mixtapeHTML = '<div class="sidebar-title"><img class="section-heading" src="' + relativePath + '/images/meenas-mixtape.gif" style="padding-right: 10px;"></div> <div class="mixtape-container"> <div class="meena-holder"> <img src="' + relativePath + '/images/meena-head.png"> </div> <div class="list-holder"> <ul class="mixtape"><li class="status-text">♫ <a href="https://feeblelittlehorse.bandcamp.com/album/bitknot">bitknot - feeble little horse</a></li> <li class="status-text">♫ <a href="https://underscores.bandcamp.com/album/u">u - underscores</a></li> </ul> </div> <div class="list-holder-mobile"> <ul class="mixtape"><li class="status-text">♫ <a href="https://feeblelittlehorse.bandcamp.com/album/bitknot">bitknot - feeble little horse</a></li> <li class="status-text">♫ <a href="https://underscores.bandcamp.com/album/u">u - underscores</a></li> <li class="status-text">♫ <a href="https://sueter7.bandcamp.com/album/todo-sali-bien-en-la-sencilla-villa-qui-n">todo salió bien en la sencilla villa quién - sueter7</a></li> <li class="status-text">♫ <a href="https://racecourse.bandcamp.com/album/july-december">july, december - racecourse</a></li> </ul> </div> </div><div class="list-holder"><ul class="mixtape"> <li class="status-text">♫ <a href="https://sueter7.bandcamp.com/album/todo-sali-bien-en-la-sencilla-villa-qui-n">todo salió bien en la sencilla villa quién - sueter7</a></li> <li class="status-text">♫ <a href="https://racecourse.bandcamp.com/album/july-december">july, december - racecourse</a></li></ul> </div>';
 let mobilemixtapeHTML = '<div class="sidebar-title"><img class="section-heading" src="' + relativePath + '/images/meenas-mixtape.gif" style="padding: 0px 20px;"></div> <div class="mixtape-container"> <div class="meena-holder"> <img src="' + relativePath + '/images/meena-head.png"> </div> <div class="list-holder"> <ul class="mixtape"><li class="status-text">♫ <a href="https://feeblelittlehorse.bandcamp.com/album/bitknot">bitknot - feeble little horse</a></li> <li class="status-text">♫ <a href="https://underscores.bandcamp.com/album/u">u - underscores</a></li> </ul> </div> <div class="list-holder-mobile"> <ul class="mixtape"><li class="status-text">♫ <a href="https://feeblelittlehorse.bandcamp.com/album/bitknot">bitknot - feeble little horse</a></li> <li class="status-text">♫ <a href="https://underscores.bandcamp.com/album/u">u - underscores</a></li> <li class="status-text">♫ <a href="https://sueter7.bandcamp.com/album/todo-sali-bien-en-la-sencilla-villa-qui-n">todo salió bien en la sencilla villa quién - sueter7</a></li> <li class="status-text">♫ <a href="https://racecourse.bandcamp.com/album/july-december">july, december - racecourse</a></li> </ul> </div> </div><div class="list-holder"><ul class="mixtape"> <li class="status-text">♫ <a href="https://sueter7.bandcamp.com/album/todo-sali-bien-en-la-sencilla-villa-qui-n">todo salió bien en la sencilla villa quién - sueter7</a></li> <li class="status-text">♫ <a href="https://racecourse.bandcamp.com/album/july-december">july, december - racecourse</a></li></ul> </div>';
 
-let shoutoutHTML = '<div class="sidebar-title"><img class="section-heading" src="' + relativePath + '/images/shoutouts.gif" style="padding: 0px 20px;"></div> <marquee> <a href="www.thepipsqueakery.org" target="_blank"><img src="' + relativePath + '/images/pipsqueak.png"></a> <a href="https://linktr.ee/thepigroom?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAadqA47_4wCkoKckuzb2TGiSJLXa8rnOlWLO6Qeqo9cEokJUZXxhNQetkqaWxQ_aem_SB28Vw97jzzUuDjcZaD2hA" target="_blank"><img src="' + relativePath + '/images/tpr.png"></a> <a href="https://www.etsy.com/shop/the3littlebeansshop/?etsrc=sdt&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAafBB5tbwzsq2CQqdQA2XVJzHN_3Gz-G71Jq_nnrqVJx6QHiSeRsWEIN-wbXDQ_aem_3Va78Iiuw_AbfkGdBy-mdg" target="_blank"><img src="' + relativePath + '/images/3lb.png"></a> <a href="https://cheekywheekies.org/" target="_blank"><img src="' + relativePath + '/images/cw.png"></a></marquee>';
-let mobileshoutoutHTML = '<div class="sidebar-title"><img class="section-heading" src="' + relativePath + '/images/shoutouts.gif" style="padding: 0px 20px;"></div> <marquee> <a href="www.thepipsqueakery.org" target="_blank"><img src="' + relativePath + '/images/pipsqueak.png"></a> <a href="https://linktr.ee/thepigroom?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAadqA47_4wCkoKckuzb2TGiSJLXa8rnOlWLO6Qeqo9cEokJUZXxhNQetkqaWxQ_aem_SB28Vw97jzzUuDjcZaD2hA" target="_blank"><img src="' + relativePath + '/images/tpr.png"></a> <a href="https://www.etsy.com/shop/the3littlebeansshop/?etsrc=sdt&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAafBB5tbwzsq2CQqdQA2XVJzHN_3Gz-G71Jq_nnrqVJx6QHiSeRsWEIN-wbXDQ_aem_3Va78Iiuw_AbfkGdBy-mdg" target="_blank"><img src="' + relativePath + '/images/3lb.png"></a> <a href="https://cheekywheekies.org/" target="_blank"><img src="' + relativePath + '/images/cw.png"></a></marquee>';
+let shoutoutHTML = '<div class="sidebar-title"><img class="section-heading" src="' + relativePath + '/images/shoutouts.gif" style="padding: 0px 20px;"></div> <marquee> <a href="https://oddfrog.nekoweb.org/" target="_blank"><img src="' + relativePath + '/images/albas_corner_button.gif"></a> <a href="www.thepipsqueakery.org" target="_blank"><img src="' + relativePath + '/images/pipsqueak.png"></a> <a href="https://linktr.ee/thepigroom?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAadqA47_4wCkoKckuzb2TGiSJLXa8rnOlWLO6Qeqo9cEokJUZXxhNQetkqaWxQ_aem_SB28Vw97jzzUuDjcZaD2hA" target="_blank"><img src="' + relativePath + '/images/tpr.png"></a> <a href="https://www.etsy.com/shop/the3littlebeansshop/?etsrc=sdt&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAafBB5tbwzsq2CQqdQA2XVJzHN_3Gz-G71Jq_nnrqVJx6QHiSeRsWEIN-wbXDQ_aem_3Va78Iiuw_AbfkGdBy-mdg" target="_blank"><img src="' + relativePath + '/images/3lb.png"></a> <a href="https://cheekywheekies.org/" target="_blank"><img src="' + relativePath + '/images/cw.png"></a></marquee>';
+let mobileshoutoutHTML = '<div class="sidebar-title"><img class="section-heading" src="' + relativePath + '/images/shoutouts.gif" style="padding: 0px 20px;"></div> <marquee><a href="https://oddfrog.nekoweb.org/" target="_blank"><img src="' + relativePath + '/images/albas_corner_button.gif"></a>  <a href="www.thepipsqueakery.org" target="_blank"><img src="' + relativePath + '/images/pipsqueak.png"></a> <a href="https://linktr.ee/thepigroom?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAadqA47_4wCkoKckuzb2TGiSJLXa8rnOlWLO6Qeqo9cEokJUZXxhNQetkqaWxQ_aem_SB28Vw97jzzUuDjcZaD2hA" target="_blank"><img src="' + relativePath + '/images/tpr.png"></a> <a href="https://www.etsy.com/shop/the3littlebeansshop/?etsrc=sdt&utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAcGRvZgJleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA85MzY2MTk3NDMzOTI0NTkAAafBB5tbwzsq2CQqdQA2XVJzHN_3Gz-G71Jq_nnrqVJx6QHiSeRsWEIN-wbXDQ_aem_3Va78Iiuw_AbfkGdBy-mdg" target="_blank"><img src="' + relativePath + '/images/3lb.png"></a> <a href="https://cheekywheekies.org/" target="_blank"><img src="' + relativePath + '/images/cw.png"></a></marquee>';
 
 let contactHTML = '<div class="sidebar-title"><img class="section-heading" src="' + relativePath + '/images/contact-me.gif"></div> <div class="site-button"> <a href="https://petrapixel.neocities.org/" target="_blank"><img src="' + relativePath + 'https://cdn.jsdelivr.net/gh/petracoding/petrapixel.neocities.org@latest/public/img/linkback.gif" alt="petrapixel"></a> <textarea><a href="https://petrapixel.neocities.org/" target="_blank"><img src="' + relativePath + 'https://cdn.jsdelivr.net/gh/petracoding/petrapixel.neocities.org@latest/public/img/linkback.gif" alt="petrapixel"></a></textarea> </div>';
 let mobilecontactHTML = '<div class="sidebar-title"><img class="section-heading" src="' + relativePath + '/images/contact-me.gif"></div> <div class="site-button"> <a href="https://petrapixel.neocities.org/" target="_blank"><img src="https://cdn.jsdelivr.net/gh/petracoding/petrapixel.neocities.org@latest/public/img/linkback.gif" alt="petrapixel"></a> <textarea><a href="https://petrapixel.neocities.org/" target="_blank"><img src="' + relativePath + 'https://cdn.jsdelivr.net/gh/petracoding/petrapixel.neocities.org@latest/public/img/linkback.gif" alt="petrapixel"></a></textarea> </div>';
 
 let audioplayerHTML = '<div id="musicplayer"><div class="title-color"><div class="actual-title"><img src="' + relativePath + 'https://loveberry.nekoweb.org/assets/musicplayer/player-icon.png" alt="" height="14px" width="14px">Piggy Audio Player</div> <div class="title-bar-controls"><div class="window-button minimize"></div><div class="window-button maximize"></div><div class="window-button close"></div> </div> </div> <div class="player-flex"><div class="player-icon-holder"><div class="player-icon"></div> </div><div class="player-main"><select class="track-select"></select><div class="controls"><div class="seeking"><div class="current-time">00:00</div><input type="range" min="1" max="100" value="0" class="seek_slider" oninput="seekTo(event)"><div class="total-duration">0:00</div></div><div class="player-buttons"><button class="window-button prev-track" onclick="prevTrack()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skip-back-icon lucide-skip-back"><path d="M17.971 4.285A2 2 0 0 1 21 6v12a2 2 0 0 1-3.029 1.715l-9.997-5.998a2 2 0 0 1-.003-3.432z"/><path d="M3 20V4"/></svg></button><button class="window-button playpause-track" onclick="playpauseTrack()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play-icon lucide-play"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg></button><button class="window-button next-track" onclick="nextTrack()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skip-forward-icon lucide-skip-forward"><path d="M21 4v16"/><path d="M6.029 4.285A2 2 0 0 0 3 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z"/></svg></button></div> </div> </div></div><audio id="music" src=""></audio></div>';
 let mobileaudioplayerHTML = '<div id="musicplayer"><div class="title-color"><div class="actual-title"><img src="' + relativePath + 'https://loveberry.nekoweb.org/assets/musicplayer/player-icon.png" alt="" height="14px" width="14px">Piggy Audio Player</div> <div class="title-bar-controls"><div class="window-button minimize"></div><div class="window-button maximize"></div><div class="window-button close"></div> </div> </div> <div class="player-flex"><div class="player-icon-holder"><div class="player-icon"></div> </div><div class="player-main"><select class="track-select"></select><div class="controls"><div class="seeking"><div class="current-time">00:00</div><input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()"><div class="total-duration">0:00</div></div><div class="player-buttons"><button class="window-button prev-track" onclick="prevTrack()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skip-back-icon lucide-skip-back"><path d="M17.971 4.285A2 2 0 0 1 21 6v12a2 2 0 0 1-3.029 1.715l-9.997-5.998a2 2 0 0 1-.003-3.432z"/><path d="M3 20V4"/></svg></button><button class="window-button playpause-track" onclick="playpauseTrack()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-play-icon lucide-play"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"/></svg></button><button class="window-button next-track" onclick="nextTrack()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-skip-forward-icon lucide-skip-forward"><path d="M21 4v16"/><path d="M6.029 4.285A2 2 0 0 0 3 6v12a2 2 0 0 0 3.029 1.715l9.997-5.998a2 2 0 0 0 .003-3.432z"/></svg></button></div> </div> </div></div><audio id="music" src=""></audio></div>';
+
+let linkbackHTML = '<div class="sidebar-title"><img class="section-heading" src="' + relativePath + '/images/link-back.gif" style="height: 27px; padding: 0 10px;"></div><div class="link-back"><img src="' + relativePath + '/images/gpg-button.jpg" class="link-back-button"><textarea id="link-back" name="link-back" rows="2" cols="15"> &lt;a href="https://guineapig-gab.com/"&gt;&lt;img src="./images/gpg-button.jpg" referrerpolicy="no-referrer" /&gt;&lt;/a&gt;</textarea></div>';
+let mobilelinkbackHTML = '<div class="sidebar-title"><img class="section-heading" src="' + relativePath + '/images/link-back.gif" style="height: 27px; padding: 0 10px;"></div><div class="link-back"><img src="' + relativePath + '/images/gpg-button.jpg" class="link-back-button"><textarea id="link-back" name="link-back" rows="2" cols="15"> &lt;a href="https://guineapig-gab.com/"&gt;&lt;img src="./images/gpg-button.jpg" referrerpolicy="no-referrer" /&gt;&lt;/a&gt;</textarea></div>';
 
 let guestbookHTML = '<div class="sidebar-title"><a href="' + relativePath + '/guestbook.html"><img class="section-heading" src="' + relativePath + '/images/leave-me-a-message.gif" style="height: 26px; padding: 0px 10px;"></a></div>';
 let mobileguestbookHTML = '<div class="sidebar-title"><a href="' + relativePath + '/guestbook.html"><img class="section-heading" src="' + relativePath + '/images/leave-me-a-message.gif" style="height: 26px; padding: 0px 10px;"></a></div>';
@@ -113,7 +194,7 @@ let mobilepotdwidgetHTML = '<div class="photo-frame"><img class="daily-photo"></
  
 //Generate the Footer HTML, which uses the variables defined in the BASIC INFO section above to list info about the site.
 //Note: feel free to remove the references to Zonelets and Neocities! Just be careful not to delete any necessary HTML closing tags or other syntax.
-let footerHTML = "<div class='footer-container'><div><a class='footer-links' href='https://github.com/turne248/'>Github</a><a class='footer-links' href='https://ko-fi.com/guineapiggab'>Piggy Bank</a><a class='footer-links' href='robby-turner.com'>See My Work</a></div><div><p style='color: #efefef;'>" + blogName + " is written by <a href='" + authorLink + "'>" + authorName + "</a>.</p><hr></div><div class='viewer-counter'><a href='http://www.snazzyspace.com/generators/viewer-counter/' title='SnazzySpace.com Viewer Counter' target='_blank'><img src='http://www.snazzyspace.com/generators/viewer-counter/counter.php/fid=1789433426/style=5/counter.png' border='0'></a>";
+let footerHTML = '<div class="footer-container"><div><a href="' + relativePath + '/feed.xml" class="footer-links"><img src="' + relativePath + '/images/rss.png" style="margin: 0; scale: 1.5;"></a><a class="footer-links" href="https://github.com/turne248/">Github</a><a class="footer-links" href="https://ko-fi.com/guineapiggab">Piggy Bank</a><a class="footer-links" href="https://robby-turner.com">See My Work</a></div><div><p style="color: #efefef;">' + blogName + ' is written by <a href="' + authorLink + '">' + authorName + '</a>.</p><hr></div><div class="viewer-counter"><a href="http://www.snazzyspace.com/generators/viewer-counter/" title="SnazzySpace.com Viewer Counter" target="_blank"><img src="http://www.snazzyspace.com/generators/viewer-counter/counter.php/fid=1789433426/style=5/counter.png" border="0"></a>';
 
 //To do the following stuff, we want to know where we are in the posts array (if we're currently on a post page).
 let currentIndex = -1;
@@ -303,6 +384,12 @@ if (document.getElementById('audio-container')) {
 }
 if (document.getElementById('mobile-audio-container')) {
   document.getElementById('mobile-audio-container').innerHTML = mobileaudioplayerHTML;
+}
+if (document.getElementById('link-back-container')) {
+  document.getElementById('link-back-container').innerHTML = linkbackHTML;
+}
+if (document.getElementById('mobile-link-back-container')) {
+  document.getElementById('mobile-link-back-container').innerHTML = mobilelinkbackHTML;
 }
 if (document.getElementById('counter-container')) {
   document.getElementById('counter-container').innerHTML = counterHTML;
@@ -595,7 +682,6 @@ const GUESSING_GAME_LIBRARY = [
   { 
     name: "Georgie!", 
     image: `${relativePath}/images/georgie-nose.jpg`, 
-    // Target the specific area to zoom into for the hint:
     focus: "45% 50%", 
     transformOrigin: "45% 50%",
     zoomLevel: "400%" 
@@ -649,8 +735,11 @@ let currentDayCode = 0;
 
 function getDailyGameData() {
   const today = new Date();
-  const dayCode = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-  const gameIndex = dayCode % GUESSING_GAME_LIBRARY.length;
+  
+  // Set currentDayCode to YYYYMMDD integer (e.g., 20261002)
+  currentDayCode = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+  
+  const gameIndex = currentDayCode % GUESSING_GAME_LIBRARY.length;
   return GUESSING_GAME_LIBRARY[gameIndex];
 }
 
@@ -661,52 +750,82 @@ function initGame() {
   const isAlreadyRevealed = savedRevealedDay === String(currentDayCode);
 
   const images = document.querySelectorAll('.mystery-img');
+  const nameEls = document.querySelectorAll('.piggy-name');
+  const buttons = document.querySelectorAll('.reveal-btn');
 
+  // 1. Set initial visual state for images
   images.forEach(img => {
     img.src = todayGameData.image;
+    
+    // Add a smooth transition so it animates when zooming out!
+    img.style.transition = "transform 0.8s ease, object-position 0.8s ease";
 
     if (isAlreadyRevealed) {
       img.style.transform = "scale(1)";
       img.style.objectPosition = "center";
-      img.style.objectFit = "center";
+      img.style.objectFit = "contain";
     } else {
       img.style.transform = `scale(${todayGameData.zoomLevel})`;
       img.style.objectPosition = todayGameData.focus;
-      img.style.transformOrigin = todayGameData.focus;
+      img.style.transformOrigin = todayGameData.transformOrigin || todayGameData.focus;
     }
   });
 
+  // 2. Set text and button states
   if (isAlreadyRevealed) {
     showFullAnswerState();
+  } else {
+    nameEls.forEach(nameEl => {
+      nameEl.textContent = "???";
+      nameEl.classList.remove('revealed-name');
+      nameEl.classList.add('hidden-name');
+    });
+
+    buttons.forEach(btn => {
+      btn.disabled = false;
+      btn.textContent = "Reveal";
+      
+      // FIX: Explicitly bind the click event to the button in JS
+      // This bypasses any scope issues with inline HTML onclick attributes
+      btn.removeEventListener('click', revealAnswer); // Prevent duplicate firing
+      btn.addEventListener('click', revealAnswer); 
+    });
   }
 }
 
 function revealAnswer() {
-  // Save state so reloads maintain the reveal
+  // Ensure game data exists before attempting reveal
+  if (!todayGameData) {
+    todayGameData = getDailyGameData();
+  }
+
+  // Save current day code so reveal persists on refresh
   localStorage.setItem('mysteryGame_lastRevealedDay', currentDayCode);
   showFullAnswerState();
 }
 
 function showFullAnswerState() {
+  if (!todayGameData) return;
+
   const images = document.querySelectorAll('.mystery-img');
   const nameEls = document.querySelectorAll('.piggy-name');
   const buttons = document.querySelectorAll('.reveal-btn');
 
-  // 1. Reset zoom to show full image
+  // 1. Reset image scale/zoom
   images.forEach(img => {
     img.style.transform = "scale(1)";
     img.style.objectPosition = "center";
     img.style.objectFit = "contain";
   });
 
-  // 2. Display the correct name
+  // 2. Reveal piggy name
   nameEls.forEach(nameEl => {
     nameEl.textContent = todayGameData.name;
     nameEl.classList.remove('hidden-name');
     nameEl.classList.add('revealed-name');
   });
 
-  // 3. Disable button after reveal
+  // 3. Disable button
   buttons.forEach(btn => {
     btn.disabled = true;
     btn.textContent = "Revealed";
@@ -888,3 +1007,8 @@ if (document.readyState === 'loading') {
   // If DOM is already ready, run immediately
   initAllWidgets();
 }
+//-----------------------------
+
+//==[ 5. END RSS FETCH ]==
+
+});

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>my RSS feed's name</title>
+  <description>my RSS feed's description</description>
+  <link>https://example.com/blog/</link>
+  <atom:link href="https://example.com/blog/feed.xml" rel="self" type="application/rss+xml" />
+  <lastBuildDate>Thu, 26 Sep 2024 08:42:18 -0700</lastBuildDate>
+  <ttl>60</ttl>
+
+<!-- ADD NEW POST HERE -->
+
+</channel>
+</rss>
